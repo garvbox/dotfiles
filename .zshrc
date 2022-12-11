@@ -109,3 +109,4 @@ source $ZSH/oh-my-zsh.sh
 # command output behavior - send output to terminal
 # see: https://superuser.com/questions/1698521/zsh-keep-all-command-outputs-on-terminal-screen
 export PAGER=""
+export LESS="-FRX"
