@@ -1,4 +1,5 @@
-#!/bin/sh
+#!/bin/bash
+set -ex
 
 get_zsh_plugin() {
     install_dir=$1
