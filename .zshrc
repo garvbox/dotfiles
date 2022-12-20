@@ -76,6 +76,10 @@ plugins=(
   git
   zsh-autosuggestions
   zsh-syntax-highlighting
+  pyenv
+  poetry
+  kubectl
+  docker
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -110,3 +114,7 @@ source $ZSH/oh-my-zsh.sh
 # see: https://superuser.com/questions/1698521/zsh-keep-all-command-outputs-on-terminal-screen
 export PAGER=""
 export LESS="-FRX"
+
+# Aliases
+alias k="kubectl"
+
