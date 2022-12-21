@@ -24,12 +24,12 @@ else
     cat .zshrc > $HOME/.zshrc
 fi
 
-if [[ -f $HOME/.gitconfig ]]; then
-    echo "gitconfig already exists, not updating"
-else
-    echo "Updating .gitconfig"
-    cat .gitconfig > $HOME/.gitconfig
-fi
+# if [[ -f $HOME/.gitconfig ]]; then
+#     echo "gitconfig already exists, not updating"
+# else
+#     echo "Updating .gitconfig"
+#     cat .gitconfig > $HOME/.gitconfig
+# fi
 
 # Pre-Commit Install and configure
 echo "Installing Pre-Commit."
