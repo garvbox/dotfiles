@@ -20,15 +20,15 @@ get_zsh_plugin ${zsh_custom}/themes/powerlevel10k "--depth=1 https://github.com/
 if [[ -f $HOME/.zshrc ]]; then
     echo "zshrc already exists, not updating"
 else
-    echo "Linking zshrc."
-    ln -s .zshrc $HOME/.zshrc
+    echo "Creating zshrc."
+    cat .zshrc > $HOME/.zshrc
 fi
 
 if [[ -f $HOME/.gitconfig ]]; then
     echo "gitconfig already exists, not updating"
 else
-    echo "Linking .gitconfig"
-    ln -s .gitconfig $HOME/.gitconfig
+    echo "Updating .gitconfig"
+    cat .gitconfig > $HOME/.gitconfig
 fi
 
 # Pre-Commit Install and configure
