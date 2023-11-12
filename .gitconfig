@@ -1,0 +1,28 @@
+[include]
+	path = ~/.gitconfig.local
+	# Local Config includes private details, such as email, signingKey
+	# and any machine-specific setup e.g. for 1Pass ssh key
+[gpg]
+	format = ssh
+[commit]
+	gpgsign = true
+[pager]
+	branch = false
+[pull]
+	ff = true
+[push]
+	autoSetupRemote = true
+# Visual setup for delta (see delta-io/delta-rs)
+[merge]
+	conflictstyle = diff3
+[diff]
+	colorMoved = default
+[init]
+	defaultBranch = main
+[core]
+	pager = delta
+[interactive]
+	diffFilter = delta --color-only
+[delta]
+	navigate = true    # use n and N to move between diff sections
+	light = false      # set to true if you're in a terminal w/ a light background color (e.g. the default macOS terminal)
