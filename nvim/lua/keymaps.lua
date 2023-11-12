@@ -4,9 +4,8 @@ local keymap = vim.keymap.set
 keymap({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 
 -- Reset cursor to center when scrolling
-keymap('n', '<C-d>', '<C-d>zz', { noremap = true, silent = true })
-keymap('n', '<C-u>', '<C-u>zz', { noremap = true, silent = true })
-
+keymap('n', '<C-d>', '<C-d>zz', { noremap = true, silent = true, desc = 'Scroll down with cursor reset' })
+keymap('n', '<C-u>', '<C-u>zz', { noremap = true, silent = true, desc = 'Scroll up with cursor reset' })
 
 -- Remap for dealing with word wrap
 keymap('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
