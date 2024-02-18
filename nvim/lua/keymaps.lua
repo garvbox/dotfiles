@@ -3,6 +3,9 @@ local keymap = vim.keymap.set
 
 keymap({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 
+-- Open Files
+keymap('n', '<C-p>', '<cmd>Telescope find_files<cr>', { desc = 'File Opener' })
+
 -- Reset cursor to center when scrolling
 keymap('n', '<C-d>', '<C-d>zz', { noremap = true, silent = true, desc = 'Scroll down with cursor reset' })
 keymap('n', '<C-u>', '<C-u>zz', { noremap = true, silent = true, desc = 'Scroll up with cursor reset' })
