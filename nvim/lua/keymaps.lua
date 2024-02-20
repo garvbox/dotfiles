@@ -3,6 +3,12 @@ local keymap = vim.keymap.set
 
 keymap({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 
+-- Disable Arrows
+keymap('n', '<Left>', '<nop>', { noremap = true, silent = true, desc = 'Disable Left Arrow nav' })
+keymap('n', '<Right>', '<nop>', { noremap = true, silent = true, desc = 'Disable Right Arrow nav' })
+keymap('n', '<Up>', '<nop>', { noremap = true, silent = true, desc = 'Disable Up Arrow nav' })
+keymap('n', '<Down>', '<nop>', { noremap = true, silent = true, desc = 'Disable Down Arrow nav' })
+
 -- Open Files
 keymap('n', '<C-p>', '<cmd>Telescope find_files<cr>', { desc = 'File Opener' })
 
