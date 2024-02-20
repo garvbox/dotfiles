@@ -107,10 +107,11 @@ require('lazy').setup({
   },
 
   {
-    'EdenEast/nightfox.nvim',
+    'catppuccin/nvim',
     priority = 1000,
+    name = 'catppuccin',
     config = function()
-      vim.cmd.colorscheme('carbonfox')
+      vim.cmd.colorscheme('catppuccin-mocha')
     end,
   },
 
@@ -121,7 +122,7 @@ require('lazy').setup({
     opts = {
       options = {
         icons_enabled = false,
-        theme = 'carbonfox',
+        theme = 'catppuccin-mocha',
         component_separators = '|',
         section_separators = '',
       },
