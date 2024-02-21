@@ -72,6 +72,7 @@ local servers = {
   -- gopls = {},
   pyright = {},
   rust_analyzer = {},
+  ruff_lsp = {},
   -- tsserver = {},
   -- html = { filetypes = { 'html', 'twig', 'hbs'} },
 
