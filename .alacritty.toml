@@ -1,0 +1,4 @@
+# Add Catppucin Theme
+import = [
+  "~/.config/alacritty/catppuccin-mocha.toml"
+]

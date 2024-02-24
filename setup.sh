@@ -27,3 +27,11 @@ if [[ ! -d $HOME/.tmux ]]; then
 else
 	echo "Tmux directory exists, skipped installing TPM"
 fi
+
+if [[ ! -d $HOME/.config/alacritty ]]; then
+	mkdir $HOME/.config/alacritty
+	curl -LO -s --output-dir $HOME/.config/alacritty https://github.com/catppuccin/alacritty/raw/main/catppuccin-mocha.toml
+	setup_link .alacritty.toml $HOME/.alacritty.toml "Alacritty Config"
+else
+	echo "Alacritty Config already exists, skipped downloading theme"
+fi
