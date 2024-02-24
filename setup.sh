@@ -17,4 +17,13 @@ setup_link() {
 
 setup_link .gitconfig $HOME/.gitconfig "Git Config"
 setup_link nvim $HOME/.config/nvim "Nvim Home"
+setup_link .tmux.conf $HOME/.tmux.conf "Tmux Config"
 
+
+# Clone TPM for tmux if new tmux env
+if [[ ! -d $HOME/.tmux ]]; then
+	git clone --quiet https://github.com/tmux-plugins/tpm $HOME/.tmux/plugins/tpm
+	echo "Installed TPM"
+else
+	echo "Tmux directory exists, skipped installing TPM"
+fi
