@@ -3,18 +3,18 @@ import = [
   "~/.config/alacritty/catppuccin-mocha.toml"
 ]
 
-# Hack Nerd Font - Requires installation
+# Switch to Meslo Nerd Font
 [font]
 [font.normal]
-family = "Hack Nerd Font"
+family = "MesloLGS NF"
 style = "Regular"
 [font.bold]
-family = "Hack Nerd Font"
+family = "MesloLGS NF"
 style = "Bold"
 [font.italic]
-family = "Hack Nerd Font"
+family = "MesloLGS NF"
 style = "Italic"
 [font.bold_italic]
-family = "Hack Nerd Font"
+family = "MesloLGS NF"
 style = "Bold Italic"
 
