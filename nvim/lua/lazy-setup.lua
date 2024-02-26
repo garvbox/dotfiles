@@ -30,6 +30,9 @@ require('lazy').setup({
   -- Detect tabstop and shiftwidth automatically
   'tpope/vim-sleuth',
 
+  -- JSON & YAML Schema Stores
+  "b0o/SchemaStore.nvim",
+
   -- Copilot
   {
     'zbirenbaum/copilot.lua',

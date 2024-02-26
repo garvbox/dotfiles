@@ -82,6 +82,15 @@ local servers = {
       telemetry = { enable = false },
     },
   },
+  jsonls = {
+    settings = {
+      json = {
+        format = { enable = true },
+        schemas = require('schemastore').json.schemas(),
+        validate = { enable = true },
+      },
+    },
+  },
 }
 
 -- Setup neovim lua configuration
