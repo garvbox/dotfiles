@@ -33,24 +33,6 @@ require('lazy').setup({
   -- JSON & YAML Schema Stores
   "b0o/SchemaStore.nvim",
 
-  -- Session Manager
-  {
-    "gennaro-tedesco/nvim-possession",
-    dependencies = {
-      "ibhagwan/fzf-lua",
-    },
-    init = function()
-      local possession = require 'nvim-possession'
-      possession.setup {
-        autoload = true, -- whether to autoload sessions in the cwd at startup
-      }
-      vim.keymap.set("n", "<leader>sl", possession.list)
-      vim.keymap.set("n", "<leader>sn", possession.new)
-      vim.keymap.set("n", "<leader>su", possession.update)
-      vim.keymap.set("n", "<leader>sd", possession.delete)
-    end,
-  },
-
   -- Copilot
   {
     'zbirenbaum/copilot.lua',
