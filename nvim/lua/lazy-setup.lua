@@ -62,6 +62,20 @@ require('lazy').setup({
     },
   },
 
+  { -- Autoformat
+    'stevearc/conform.nvim',
+    opts = {
+      -- notify_on_error = false,
+      format_on_save = {
+        timeout_ms = 500,
+        lsp_fallback = true,
+      },
+      formatters_by_ft = {
+        lua = { 'stylua' },
+      },
+    },
+  },
+
   {
     -- Autocompletion
     'hrsh7th/nvim-cmp',
@@ -164,7 +178,6 @@ require('lazy').setup({
   -- NOTE: Next Step on Your Neovim Journey: Add/Configure additional "plugins" for kickstart
   --       These are some example plugins that I've included in the kickstart repository.
   --       Uncomment any of the lines below to enable them.
-  require 'kickstart.plugins.autoformat',
   -- require 'kickstart.plugins.debug',
 
   -- NOTE: The import below can automatically add your own plugins, configuration, etc from `lua/custom/plugins/*.lua`
