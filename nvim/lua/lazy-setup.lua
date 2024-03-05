@@ -27,9 +27,7 @@ require('lazy').setup({
   'b0o/SchemaStore.nvim',
 
   -- Copilot
-  {
-    'github/copilot.vim',
-  },
+  'github/copilot.vim',
 
   {
     -- LSP Configuration & Plugins
