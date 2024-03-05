@@ -31,18 +31,11 @@ require('lazy').setup({
   'tpope/vim-sleuth',
 
   -- JSON & YAML Schema Stores
-  "b0o/SchemaStore.nvim",
+  'b0o/SchemaStore.nvim',
 
   -- Copilot
   {
-    'zbirenbaum/copilot.lua',
-    opts = {
-      suggestion = { enabled = false },
-      panel = { enabled = false },
-    },
-    dependencies = {
-      { "zbirenbaum/copilot-cmp", opts = {} },
-    }
+    'github/copilot.vim',
   },
 
   -- NOTE: This is where your plugins related to LSP can be installed.
@@ -87,7 +80,7 @@ require('lazy').setup({
   },
 
   -- Useful plugin to show you pending keybinds.
-  { 'folke/which-key.nvim',  opts = {} },
+  { 'folke/which-key.nvim', opts = {} },
   {
     -- Adds git related signs to the gutter, as well as utilities for managing changes
     'lewis6991/gitsigns.nvim',
@@ -108,7 +101,7 @@ require('lazy').setup({
     priority = 1000,
     name = 'catppuccin',
     config = function()
-      vim.cmd.colorscheme('catppuccin-mocha')
+      vim.cmd.colorscheme 'catppuccin-mocha'
     end,
   },
 
@@ -143,7 +136,7 @@ require('lazy').setup({
     'folke/todo-comments.nvim',
     event = 'VimEnter',
     dependencies = { 'nvim-lua/plenary.nvim' },
-    opts = { signs = false }
+    opts = { signs = false },
   },
 
   { -- Collection of various small independent plugins/modules
