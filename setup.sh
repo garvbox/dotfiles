@@ -9,6 +9,7 @@ main() {
 	echo "Running dotfiles setup"
 	setup_link .gitconfig $HOME/.gitconfig "Git Config"
 	setup_link nvim $HOME/.config/nvim "Nvim Home"
+	setup_link fd $HOME/.config/fd "Fd Home"
 
 	if command_exists alacritty; then
 		alacritty_setup
