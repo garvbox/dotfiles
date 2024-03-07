@@ -75,6 +75,7 @@ local servers = {
   ruff_lsp = {},
   -- tsserver = {},
   -- html = { filetypes = { 'html', 'twig', 'hbs'} },
+  pest_ls = {},
 
   lua_ls = {
     Lua = {

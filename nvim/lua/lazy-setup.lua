@@ -26,6 +26,12 @@ require('lazy').setup({
   -- JSON & YAML Schema Stores
   'b0o/SchemaStore.nvim',
 
+  -- Pest VIM
+  {
+    'pest-parser/pest.vim',
+    opts = {},
+  },
+
   -- Copilot
   'github/copilot.vim',
 
