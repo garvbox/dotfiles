@@ -166,5 +166,5 @@ require('lazy').setup({
     build = ':TSUpdate',
   },
 
-  { import = 'plugins' },
+  { import = 'lazy-plugins' },
 }, {})
