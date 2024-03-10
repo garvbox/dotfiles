@@ -16,155 +16,23 @@ vim.opt.rtp:prepend(lazypath)
 
 -- [[ Configure plugins ]]
 require('lazy').setup({
+  -- Basic plugins with no setup listed here, ones with any setup functions or options are
+  -- in lazy-plugins
+
   -- Git related plugins
   'tpope/vim-fugitive',
   'tpope/vim-rhubarb',
-
   -- Detect tabstop and shiftwidth automatically
   'tpope/vim-sleuth',
-
   -- JSON & YAML Schema Stores
   'b0o/SchemaStore.nvim',
-
-  -- Pest VIM
-  {
-    'pest-parser/pest.vim',
-    opts = {},
-  },
-
   -- Copilot
   'github/copilot.vim',
-
-  {
-    -- LSP Configuration & Plugins
-    'neovim/nvim-lspconfig',
-    dependencies = {
-      -- Automatically install LSPs to stdpath for neovim
-      'williamboman/mason.nvim',
-      'williamboman/mason-lspconfig.nvim',
-      'WhoIsSethDaniel/mason-tool-installer.nvim',
-
-      -- Useful status updates for LSP
-      { 'j-hui/fidget.nvim', tag = 'legacy', opts = {} },
-    },
-  },
-
-  { -- Autoformat
-    'stevearc/conform.nvim',
-    opts = {
-      -- notify_on_error = false,
-      format_on_save = {
-        timeout_ms = 500,
-        lsp_fallback = true,
-      },
-      formatters_by_ft = {
-        lua = { 'stylua' },
-      },
-    },
-  },
-
-  {
-    -- Autocompletion
-    'hrsh7th/nvim-cmp',
-    dependencies = {
-      -- Adds LSP completion capabilities
-      'hrsh7th/cmp-nvim-lsp',
-      'hrsh7th/cmp-path',
-    },
-  },
-
   -- Useful plugin to show you pending keybinds.
   { 'folke/which-key.nvim', opts = {} },
-
-  {
-    'catppuccin/nvim',
-    priority = 1000,
-    name = 'catppuccin',
-    config = function()
-      vim.cmd.colorscheme 'catppuccin-mocha'
-    end,
-  },
-
-  {
-    -- Set lualine as statusline
-    'nvim-lualine/lualine.nvim',
-    -- See `:help lualine.txt`
-    opts = {
-      options = {
-        icons_enabled = false,
-        theme = 'catppuccin-mocha',
-        component_separators = '|',
-        section_separators = '',
-      },
-    },
-  },
-
-  {
-    -- Add indentation guides even on blank lines
-    'lukas-reineke/indent-blankline.nvim',
-    -- Enable `lukas-reineke/indent-blankline.nvim`
-    -- See `:help ibl`
-    main = 'ibl',
-    opts = {},
-  },
-
   -- "gc" to comment visual regions/lines
   { 'numToStr/Comment.nvim', opts = {} },
 
-  -- Highlight todo, notes, etc in comments
-  {
-    'folke/todo-comments.nvim',
-    event = 'VimEnter',
-    dependencies = { 'nvim-lua/plenary.nvim' },
-    opts = { signs = false },
-  },
-
-  { -- Collection of various small independent plugins/modules
-    'echasnovski/mini.nvim',
-    config = function()
-      -- Better Around/Inside textobjects
-      --
-      -- Examples:
-      --  - va)  - [V]isually select [A]round [)]paren
-      --  - yinq - [Y]ank [I]nside [N]ext [']quote
-      --  - ci'  - [C]hange [I]nside [']quote
-      require('mini.ai').setup { n_lines = 500 }
-
-      -- Add/delete/replace surroundings (brackets, quotes, etc.)
-      require('mini.surround').setup()
-    end,
-  },
-
-  -- Fuzzy Finder (files, lsp, etc)
-  {
-    'nvim-telescope/telescope.nvim',
-    branch = '0.1.x',
-    dependencies = {
-      'nvim-lua/plenary.nvim',
-      -- Fuzzy Finder Algorithm which requires local dependencies to be built.
-      -- Only load if `make` is available. Make sure you have the system
-      -- requirements installed.
-      {
-        'nvim-telescope/telescope-fzf-native.nvim',
-        -- NOTE: If you are having trouble with this installation,
-        --       refer to the README for telescope-fzf-native for more instructions.
-        build = 'make',
-        cond = function()
-          return vim.fn.executable 'make' == 1
-        end,
-      },
-      { 'nvim-telescope/telescope-ui-select.nvim' },
-    },
-  },
-
-  {
-    -- Highlight, edit, and navigate code
-    'nvim-treesitter/nvim-treesitter',
-    dependencies = {
-      'nvim-treesitter/nvim-treesitter-textobjects',
-    },
-    build = ':TSUpdate',
-  },
-
+  -- Include dependent modules
   { import = 'lazy-plugins' },
 }, {})
