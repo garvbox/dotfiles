@@ -21,6 +21,12 @@ main() {
 	else
 		echo "Tmux not installed"
 	fi
+
+	if command_exists bat; then
+		bat_setup
+	else
+		echo "Bat not installed"
+	fi
 }
 
 setup_link() {
@@ -58,6 +64,20 @@ alacritty_setup() {
 		setup_link .alacritty.toml $HOME/.alacritty.toml "Alacritty Config"
 	else
 		echo "Alacritty Config already exists, skipped downloading theme"
+	fi
+}
+
+bat_setup () {
+	if [[ ! -d $HOME/.config/bat ]]; then
+		mkdir $HOME/.config/bat
+		setup_link bat/config $HOME/.config/bat/config "Bat Home"
+		wget -P "$(bat --config-dir)/themes" https://github.com/catppuccin/bat/raw/main/themes/Catppuccin%20Latte.tmTheme
+		wget -P "$(bat --config-dir)/themes" https://github.com/catppuccin/bat/raw/main/themes/Catppuccin%20Frappe.tmTheme
+		wget -P "$(bat --config-dir)/themes" https://github.com/catppuccin/bat/raw/main/themes/Catppuccin%20Macchiato.tmTheme
+		wget -P "$(bat --config-dir)/themes" https://github.com/catppuccin/bat/raw/main/themes/Catppuccin%20Mocha.tmTheme
+		bat cache --build
+	else
+		echo "Bat Home already exists, skipped setup"
 	fi
 }
 
