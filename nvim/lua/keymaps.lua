@@ -9,8 +9,8 @@ keymap('n', '<Right>', '<nop>', { noremap = true, silent = true, desc = 'Disable
 keymap('n', '<Up>', '<nop>', { noremap = true, silent = true, desc = 'Disable Up Arrow nav' })
 keymap('n', '<Down>', '<nop>', { noremap = true, silent = true, desc = 'Disable Down Arrow nav' })
 
--- Open Files
-keymap('n', '<C-p>', '<cmd>Telescope find_files<cr>', { desc = 'File Opener' })
+-- File Switcher
+keymap('n', '<leader><leader>', '<C-^>', { desc = 'Switch between last two files' })
 
 -- Reset cursor to center when scrolling
 keymap('n', '<C-d>', '<C-d>zz', { noremap = true, silent = true, desc = 'Scroll down with cursor reset' })
