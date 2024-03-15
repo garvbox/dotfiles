@@ -1,1 +1,26 @@
 # dotfiles
+
+Dotfiles are laid out for use of [chezmoi](https://github.com/twpayne/chezmoi), with installation
+and configuration done automatically by [install.sh](./install.sh). Setup is ideally machine portable
+but there are some external dependencies that are left out due to MacOS/Linux differences.
+
+The setup script will download Chezmoi and apply its config from this dotfiles repo, then download
+themes and plugins required to support the config.
+
+## Required Tools
+
+The following CLI tools are configured and should be installed to make best use of the config:
+
+* bat
+* fd-find
+* fzf
+* delta
+
+
+## Recommended Extras
+
+The git configuration is left anonymous for privacy, as it also may change between machines for different
+purposes. In order to add customisations, create a file `~/.gitconfig.local` with any extra config and the
+gitconfig provided will automatically include it. Examples are commit author, email, ssh keys and agent config.
+
+
