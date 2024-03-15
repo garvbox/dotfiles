@@ -30,8 +30,8 @@ codespace_install_setup() {
 
 	echo "Installing Chezmoi and applying config"
 	# Use one-step config as we wont be making any changes to dotfiles from a codespace
-	sh -c "$(curl -fsLS get.chezmoi.io/lb)" -- \
-		init --apply git@github.com:$GITHUB_USERNAME/dotfiles.git
+	# We also use the http-based auth here as the SSH setup doesnt work so well there
+	sh -c "$(curl -fsLS get.chezmoi.io/lb)" -- init --apply $GITHUB_USERNAME/dotfiles
 
 }
 
