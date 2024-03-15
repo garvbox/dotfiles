@@ -2,32 +2,50 @@
 set -e
 
 main() {
-	echo "Installing tools"
-	chezmoi_setup
-	download_alacritty_themes
-	install_tmux_tpm
-	bat_setup
 
-	# Codespaces are a fairly specific environment, we can pretty much guarantee that they are 
+	# Codespaces are a fairly specific environment, we can pretty much guarantee that they are
+	# running ubuntu and so can install the tools there first
 	if [[ -n $CODESPACES ]]; then
-		echo "Running Codespace-Specific Setup"
+		codespace_install_setup
+	else
+		echo "Running Local Setup"
+		chezmoi_setup
+		download_alacritty_themes
 	fi
+
+	# Common setup items for local and codespaces
+	install_tpm
+	download_bat_themes
 }
 
 command_exists() {
 	command -v "$1" >/dev/null 2>&1
 }
 
+codespace_install_setup() {
+	echo "Running Codespaces-Specific setup"
+
+	echo "Installing Tools"
+	sudo apt-get -qq update && sudo apt-get -qq --yes install tmux neovim bat fd-find fzf
+
+	echo "Installing Chezmoi and applying config"
+	# Use one-step config as we wont be making any changes to dotfiles from a codespace
+	sh -c "$(curl -fsLS get.chezmoi.io/lb)" -- \
+		init --apply git@github.com:$GITHUB_USERNAME/dotfiles.git
+
+}
+
 chezmoi_setup() {
 	if ! command_exists chezmoi; then
-		sh -c "$(curl -fsLS get.chezmoi.io)" -- \
-			init --apply git@github.com:$GITHUB_USERNAME/dotfiles.git \
-			-b $HOME/.local/bin
+		sh -c "$(curl -fsLS get.chezmoi.io)" -- -b $HOME/.local/bin
+		$HOME/.local/bin/chezmoi apply init --apply git@github.com:$GITHUB_USERNAME/dotfiles.git
+	else
+		echo "Chezmoi already installed, skipping configuration"
 	fi
 }
 
 
-install_tmux_tpm() {
+install_tpm() {
 	if [[ ! -d $HOME/.tmux/plugins/tpm ]]; then
 		git clone --quiet https://github.com/tmux-plugins/tpm $HOME/.tmux/plugins/tpm
 		echo "Installed TPM"
@@ -49,7 +67,7 @@ download_alacritty_themes() {
 	done
 }
 
-bat_setup () {
+download_bat_themes () {
 	if [[ ! -d $HOME/.config/bat/themes ]]; then
 		mkdir -p $HOME/.config/bat
 		for theme in Mocha Latte Frappe Macchiato; do
