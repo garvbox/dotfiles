@@ -26,10 +26,13 @@ codespace_install_setup() {
 	echo "Running Codespaces-Specific setup"
 
 	echo "Installing Tools"
-	sudo apt-get -qq update && sudo apt-get -qq --yes install tmux neovim bat fd-find fzf
+	sudo apt-get -qq update && sudo apt-get -qq --yes install fish tmux neovim bat fd-find fzf
 
 	echo "Installing Starship"
 	curl -sS https://starship.rs/install.sh | sh -- -y
+
+	echo "Setting Fish shell default"
+	sudo chsh "$(id -un)" --shell "/usr/bin/fish"
 
 	echo "Installing Chezmoi and applying config"
 	# Use one-step config as we wont be making any changes to dotfiles from a codespace
