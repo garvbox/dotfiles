@@ -28,7 +28,7 @@ codespace_install_setup() {
 
 	echo "Installing Tools"
 	sudo apt-get -qq update && \
-		sudo apt-get -qq --yes install fish tmux bat fd-find fzf && \
+		sudo apt-get -qq --yes install neovim fish tmux bat fd-find fzf && \
 		sudo apt-get --qq --yes --no-install-recommends npm
 
 	echo "Downloading Neovim Latest"
