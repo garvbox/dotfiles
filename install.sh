@@ -15,6 +15,7 @@ main() {
 
 	# Common setup items for local and codespaces
 	install_tpm
+	install_starship
 	download_bat_themes
 }
 
@@ -27,9 +28,6 @@ codespace_install_setup() {
 
 	echo "Installing Tools"
 	sudo apt-get -qq update && sudo apt-get -qq --yes install fish tmux neovim bat fd-find fzf
-
-	echo "Installing Starship"
-	curl -sS https://starship.rs/install.sh | sh -s -- -y
 
 	echo "Setting Fish shell default"
 	sudo chsh "$(id -un)" --shell "/usr/bin/fish"
@@ -57,6 +55,16 @@ install_tpm() {
 		echo "Installed TPM"
 	else
 		echo "Tmux directory exists, skipped setting up TPM"
+	fi
+}
+
+install_starship() {
+	if ! command_exists starship; then
+
+		echo "Installing Starship"
+		curl -sS https://starship.rs/install.sh | sh -s -- -y
+	else
+		echo "Starship already installed..."
 	fi
 }
 
