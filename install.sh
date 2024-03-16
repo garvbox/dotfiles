@@ -29,7 +29,7 @@ codespace_install_setup() {
 	echo "Installing Tools"
 	sudo apt-get -qq update && \
 		sudo apt-get -qq --yes install neovim fish tmux bat fd-find fzf && \
-		sudo apt-get --qq --yes --no-install-recommends npm
+		sudo apt-get -qq --yes --no-install-recommends npm
 
 	echo "Downloading Neovim Latest"
 	curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux64.tar.gz
