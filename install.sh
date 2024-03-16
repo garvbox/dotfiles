@@ -18,6 +18,7 @@ main() {
 	install_tpm
 	install_starship
 	download_bat_themes
+	download_fish_themes
 }
 
 command_exists() {
@@ -75,22 +76,38 @@ download_alacritty_themes() {
 }
 
 download_bat_themes () {
-	if [[ ! -d $HOME/.config/bat/themes ]]; then
-		mkdir -p $HOME/.config/bat
-		for theme in Mocha Latte Frappe Macchiato; do
-			cp_theme_file="Catppuccin ${theme}.tmTheme"
-			cp_theme_dl="Catppuccin%20${theme}.tmTheme"
-			if [[ ! -f ${bat_theme_path}/${cp_theme_file} ]]; then
-				wget -q -P "$HOME/.config/bat/themes" \
-					https://github.com/catppuccin/bat/raw/main/themes/${cp_theme_dl}
-			fi
-		done
-		if command_exists bat; then
-			bat cache --build
-		else
-			echo "Bat is not installed, cache not updated"
-		fi
+	bat_theme_path="${HOME}/.config/bat/themes"
+	if [[ ! -d $bat_theme_path ]]; then
+		mkdir -p $bat_theme_path
 	fi
+	for theme in Mocha Latte Frappe Macchiato; do
+		cp_theme_file="Catppuccin ${theme}.tmTheme"
+		cp_theme_dl="Catppuccin%20${theme}.tmTheme"
+		if [[ ! -f ${bat_theme_path}/${cp_theme_file} ]]; then
+			wget -q -P $bat_theme_path \
+				https://github.com/catppuccin/bat/raw/main/themes/${cp_theme_dl}
+		fi
+	done
+	if command_exists bat; then
+		bat cache --build
+	else
+		echo "Bat is not installed, cache not updated"
+	fi
+}
+
+download_fish_themes() {
+	fish_theme_path="${HOME}/.config/fish/themes"
+	if [[ ! -d $fish_theme_path ]]; then
+		mkdir -p $fish_theme_path
+	fi
+	for theme in Mocha Latte Frappe Macchiato; do
+		cp_theme_file="Catppuccin ${theme}.theme"
+		cp_theme_dl="Catppuccin%20${theme}.theme"
+		if [[ ! -f ${fish_theme_path}/${cp_theme_file} ]]; then
+			wget -q -P $fish_theme_path \
+				https://github.com/catppuccin/fish/blob/main/themes/${cp_theme_dl}
+		fi
+	done
 }
 
 main
