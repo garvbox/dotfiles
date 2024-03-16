@@ -76,6 +76,7 @@ local servers = {
   -- tsserver = {},
   -- html = { filetypes = { 'html', 'twig', 'hbs'} },
   pest_ls = {},
+  yamlls = {},
 
   lua_ls = {
     Lua = {
