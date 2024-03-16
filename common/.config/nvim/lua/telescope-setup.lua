@@ -13,6 +13,16 @@ require('telescope').setup {
       require('telescope.themes').get_dropdown(),
     },
   },
+  pickers = {
+    find_files = {
+      hidden = true,
+      file_ignore_patterns = { '.venv', '.git', 'node_modules', 'target' },
+    },
+    live_grep = {
+      file_ignore_patterns = { 'node_modules', '.git', '.venv' },
+      additional_args = { '--hidden' }
+    },
+  }
 }
 
 -- Enable telescope fzf native, if installed
