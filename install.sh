@@ -29,7 +29,7 @@ codespace_install_setup() {
 	sudo apt-get -qq update && sudo apt-get -qq --yes install tmux neovim bat fd-find fzf
 
 	echo "Installing Starship"
-	curl -sS https://starship.rs/install.sh | sh
+	curl -sS https://starship.rs/install.sh | sh -- -y
 
 	echo "Installing Chezmoi and applying config"
 	# Use one-step config as we wont be making any changes to dotfiles from a codespace
