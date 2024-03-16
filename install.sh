@@ -9,7 +9,6 @@ main() {
 		codespace_install_setup
 	else
 		echo "Running Local Setup"
-		chezmoi_setup
 		download_alacritty_themes
 	fi
 
@@ -35,16 +34,6 @@ codespace_install_setup() {
 	sh -c "$(curl -fsLS get.chezmoi.io/lb)" -- init --apply garvbox/dotfiles
 
 }
-
-chezmoi_setup() {
-	if [[ ! -f $HOME/.local/bin/chezmoi; then
-		sh -c "$(curl -fsLS get.chezmoi.io)" -- -b $HOME/.local/bin
-		$HOME/.local/bin/chezmoi init --apply git@github.com:garvbox/dotfiles.git
-	else
-		echo "Chezmoi already installed, skipping configuration"
-	fi
-}
-
 
 install_tpm() {
 	if [[ ! -d $HOME/.tmux/plugins/tpm ]]; then
