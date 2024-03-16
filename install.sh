@@ -28,6 +28,8 @@ codespace_install_setup() {
 	echo "Running Codespaces-Specific setup"
 	echo "Setting Fish shell default"
 	sudo chsh "$(id -un)" --shell "/usr/bin/fish"
+	# Installing fish in codespaces puts some default config in, remove it
+	rm -rf $HOME/.config/fish
 }
 
 install_tpm() {
