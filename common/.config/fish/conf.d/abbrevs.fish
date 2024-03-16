@@ -16,4 +16,4 @@ alias vim="nvim"
 # Rusty tools :-)
 alias ls="exa"
 alias cat="bat"
-
+alias grep="rg"
