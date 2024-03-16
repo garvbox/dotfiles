@@ -66,6 +66,5 @@ download_alacritty_themes() {
 	git clone https://github.com/alacritty/alacritty-theme ${alacritty_theme_path}
 }
 
-
 main
 
