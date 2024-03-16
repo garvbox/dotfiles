@@ -9,6 +9,6 @@ abbr -a gl "git pull"
 abbr -a gp "git push"
 abbr -a gst "git status"
 
-# Editor
+# Misc
 alias vim="nvim"
-
+alias k="kubectl"
