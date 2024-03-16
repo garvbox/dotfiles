@@ -62,8 +62,10 @@ run_stow_package() {
 
 download_alacritty_themes() {
 	alacritty_theme_path="${HOME}/.config/alacritty/themes"
-	mkdir -p $alacritty_theme_path
-	git clone https://github.com/alacritty/alacritty-theme ${alacritty_theme_path}
+	if [[ ! -d $alacritty_theme_path ]]; then
+		mkdir -p $alacritty_theme_path
+		git clone https://github.com/alacritty/alacritty-theme ${alacritty_theme_path}
+	fi
 }
 
 main
