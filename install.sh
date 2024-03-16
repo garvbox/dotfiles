@@ -29,7 +29,7 @@ codespace_install_setup() {
 	sudo apt-get -qq update && sudo apt-get -qq --yes install fish tmux neovim bat fd-find fzf
 
 	echo "Installing Starship"
-	curl -sS https://starship.rs/install.sh | sh -- -y
+	curl -sS https://starship.rs/install.sh | sh -s -- -y
 
 	echo "Setting Fish shell default"
 	sudo chsh "$(id -un)" --shell "/usr/bin/fish"
