@@ -1,6 +1,6 @@
 # Add Catppucin Theme
 import = [
-  "~/.config/alacritty/catppuccin-macchiato.toml"
+  "~/.config/alacritty/themes/catppuccin_macchiato.toml"
 ]
 
 # Switch to Meslo Nerd Font
