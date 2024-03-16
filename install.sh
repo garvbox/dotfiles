@@ -37,9 +37,9 @@ codespace_install_setup() {
 }
 
 chezmoi_setup() {
-	if ! command_exists chezmoi; then
+	if [[ ! -f $HOME/.local/bin/chezmoi; then
 		sh -c "$(curl -fsLS get.chezmoi.io)" -- -b $HOME/.local/bin
-		$HOME/.local/bin/chezmoi apply init --apply git@github.com:garvbox/dotfiles.git
+		$HOME/.local/bin/chezmoi init --apply git@github.com:garvbox/dotfiles.git
 	else
 		echo "Chezmoi already installed, skipping configuration"
 	fi

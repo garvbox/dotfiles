@@ -24,3 +24,24 @@ purposes. In order to add customisations, create a file `~/.gitconfig.local` wit
 gitconfig provided will automatically include it. Examples are commit author, email, ssh keys and agent config.
 
 
+## Codespaces Setup
+
+A few things are required for an effective codespaces setup, you need a recent ubuntu image as older ones
+are incompatible with modern neovim etc. The below devcontainer is known to work and provides a lot of
+the tools that are configured here.
+
+```json
+{
+  "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
+  "features": {
+    "ghcr.io/devcontainers/features/sshd:1": {},
+    "ghcr.io/kreemer/features/stow:1": {},
+    "ghcr.io/devcontainers/features/node:1": {},
+    "ghcr.io/meaningful-ooo/devcontainer-features/fish:1": {},
+    "ghcr.io/devcontainers-contrib/features/neovim-homebrew:1": {},
+    "ghcr.io/devcontainers-contrib/features/tmux-homebrew:1": {},
+    "ghcr.io/devcontainers-contrib/features/fzf:1": {},
+    "ghcr.io/devcontainers-contrib/features/fd:1": {}
+  }
+}
+```
