@@ -17,7 +17,6 @@ main() {
 	run_stow_package common
 	install_tpm
 	install_starship
-	download_fish_themes
 }
 
 command_exists() {
