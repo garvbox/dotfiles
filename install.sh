@@ -10,9 +10,11 @@ main() {
 	else
 		echo "Running Local Setup"
 		download_alacritty_themes
+		run_stow_package local
 	fi
 
 	# Common setup items for local and codespaces
+	run_stow_package common
 	install_tpm
 	install_starship
 	download_bat_themes
@@ -24,15 +26,8 @@ command_exists() {
 
 codespace_install_setup() {
 	echo "Running Codespaces-Specific setup"
-
 	echo "Setting Fish shell default"
 	sudo chsh "$(id -un)" --shell "/usr/bin/fish"
-
-	echo "Installing Chezmoi and applying config"
-	# Use one-step config as we wont be making any changes to dotfiles from a codespace
-	# We also use the http-based auth here as the SSH setup doesnt work so well there
-	sh -c "$(curl -fsLS get.chezmoi.io/lb)" -- init --apply garvbox/dotfiles
-
 }
 
 install_tpm() {
@@ -51,6 +46,16 @@ install_starship() {
 		curl -sS https://starship.rs/install.sh | sh -s -- -y
 	else
 		echo "Starship already installed..."
+	fi
+}
+
+run_stow_package() {
+	if ! command_exists stow; then
+		echo "ERROR: Missing GNU Stow"
+		exit -1
+	else
+		echo "Running Stow package: $1"
+		stow -Sv -t $HOME $1
 	fi
 }
 
