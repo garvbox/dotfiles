@@ -17,7 +17,6 @@ main() {
 	run_stow_package common
 	install_tpm
 	install_starship
-	download_bat_themes
 	download_fish_themes
 }
 
@@ -73,26 +72,6 @@ download_alacritty_themes() {
 				https://github.com/catppuccin/alacritty/raw/main/${theme_file}
 		fi
 	done
-}
-
-download_bat_themes () {
-	bat_theme_path="${HOME}/.config/bat/themes"
-	if [[ ! -d $bat_theme_path ]]; then
-		mkdir -p $bat_theme_path
-	fi
-	for theme in Mocha Latte Frappe Macchiato; do
-		cp_theme_file="Catppuccin ${theme}.tmTheme"
-		cp_theme_dl="Catppuccin%20${theme}.tmTheme"
-		if [[ ! -f ${bat_theme_path}/${cp_theme_file} ]]; then
-			wget -q -P $bat_theme_path \
-				https://github.com/catppuccin/bat/raw/main/themes/${cp_theme_dl}
-		fi
-	done
-	if command_exists bat; then
-		bat cache --build
-	else
-		echo "Bat is not installed, cache not updated"
-	fi
 }
 
 download_fish_themes() {
