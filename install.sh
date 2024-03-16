@@ -26,17 +26,6 @@ command_exists() {
 codespace_install_setup() {
 	echo "Running Codespaces-Specific setup"
 
-	echo "Installing Tools"
-	sudo apt-get -qq update && \
-		sudo apt-get -qq --yes install neovim fish tmux bat fd-find fzf && \
-		sudo apt-get -qq --yes --no-install-recommends npm
-
-	echo "Downloading Neovim Latest"
-	curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux64.tar.gz
-	sudo rm -rf /opt/nvim-linux64
-	sudo tar -C /opt -xzf nvim-linux64.tar.gz
-	sudo ln -s /opt/nvim-linux64/bin/nvim /usr/bin/nvim
-
 	echo "Setting Fish shell default"
 	sudo chsh "$(id -un)" --shell "/usr/bin/fish"
 
