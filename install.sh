@@ -75,7 +75,7 @@ download_alacritty_themes() {
 	for theme in latte frappe macchiato mocha; do
 		theme_file="catppuccin-${theme}.toml"
 		if [[ ! -f $HOME/.config/alacritty/${theme_file} ]]; then
-			wget -P $HOME/.config/alacritty \
+			wget -q -P $HOME/.config/alacritty \
 				https://github.com/catppuccin/alacritty/raw/main/${theme_file}
 		fi
 	done
@@ -88,7 +88,8 @@ download_bat_themes () {
 			cp_theme_file="Catppuccin ${theme}.tmTheme"
 			cp_theme_dl="Catppuccin%20${theme}.tmTheme"
 			if [[ ! -f ${bat_theme_path}/${cp_theme_file} ]]; then
-				wget -P "$HOME/.config/bat/themes" https://github.com/catppuccin/bat/raw/main/themes/${cp_theme_dl}
+				wget -q -P "$HOME/.config/bat/themes" \
+					https://github.com/catppuccin/bat/raw/main/themes/${cp_theme_dl}
 			fi
 		done
 		if command_exists bat; then
