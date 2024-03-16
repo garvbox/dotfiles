@@ -62,32 +62,11 @@ run_stow_package() {
 }
 
 download_alacritty_themes() {
-	if [[ ! -d $HOME/.config/alacritty ]]; then
-		mkdir $HOME/.config/alacritty
-	fi
-	for theme in latte frappe macchiato mocha; do
-		theme_file="catppuccin-${theme}.toml"
-		if [[ ! -f $HOME/.config/alacritty/${theme_file} ]]; then
-			wget -q -P $HOME/.config/alacritty \
-				https://github.com/catppuccin/alacritty/raw/main/${theme_file}
-		fi
-	done
+	alacritty_theme_path="${HOME}/.config/alacritty/themes"
+	mkdir -p $alacritty_theme_path
+	git clone https://github.com/alacritty/alacritty-theme ${alacritty_theme_path}
 }
 
-download_fish_themes() {
-	fish_theme_path="${HOME}/.config/fish/themes"
-	if [[ ! -d $fish_theme_path ]]; then
-		mkdir -p $fish_theme_path
-	fi
-	for theme in Mocha Latte Frappe Macchiato; do
-		cp_theme_file="Catppuccin ${theme}.theme"
-		cp_theme_dl="Catppuccin%20${theme}.theme"
-		if [[ ! -f ${fish_theme_path}/${cp_theme_file} ]]; then
-			wget -q -P $fish_theme_path \
-				https://github.com/catppuccin/fish/blob/main/themes/${cp_theme_dl}
-		fi
-	done
-}
 
 main
 
