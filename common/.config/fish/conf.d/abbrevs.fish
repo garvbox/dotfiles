@@ -12,8 +12,3 @@ abbr -a gst "git status"
 # Editor
 alias vim="nvim"
 
-# General Shell Usage
-# Rusty tools :-)
-alias ls="exa"
-alias cat="bat"
-alias grep="rg"
