@@ -8,6 +8,7 @@ abbr -a gd "git diff"
 abbr -a gl "git pull"
 abbr -a gp "git push"
 abbr -a gst "git status"
+abbr -a gup "git checkout master && git fetch --all --prune && git pull"
 
 # Misc
 alias vim="nvim"
