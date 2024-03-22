@@ -19,7 +19,7 @@ require('telescope').setup {
       file_ignore_patterns = { '.venv/', '.git/', 'node_modules/', 'target/' },
     },
     live_grep = {
-      file_ignore_patterns = { 'node_modules/', '.git/', '.venv/', 'target/' },
+      file_ignore_patterns = { 'node_modules/', '.git/', '.venv/', 'target/', '.test_durations' },
       additional_args = { '--hidden' },
     },
   },
