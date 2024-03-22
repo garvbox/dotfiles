@@ -12,4 +12,5 @@ abbr -a gup "git checkout master && git fetch --all --prune && git pull"
 
 # Misc
 alias vim="nvim"
-alias k="kubectl"
+abbr -a k "kubectl"
+abbr -a pvim "poetry run nvim"
