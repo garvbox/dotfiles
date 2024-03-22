@@ -14,3 +14,5 @@ abbr -a gup "git checkout master && git fetch --all --prune && git pull"
 alias vim="nvim"
 abbr -a k "kubectl"
 abbr -a pvim "poetry run nvim"
+# Granted
+alias assume="source (brew --prefix)/bin/assume.fish"
