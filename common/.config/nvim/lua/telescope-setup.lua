@@ -4,13 +4,17 @@ require('telescope').setup {
   defaults = {
     mappings = {
       i = {
-        ['<esc>'] = require('telescope.actions').close,
+        -- ['<esc>'] = require('telescope.actions').close,
       },
     },
   },
   extensions = {
     ['ui-select'] = {
       require('telescope.themes').get_dropdown(),
+    },
+    file_browser = {
+      hijack_netrw = true,
+      path = '%:p:h',
     },
   },
   pickers = {
@@ -28,6 +32,7 @@ require('telescope').setup {
 -- Enable telescope fzf native, if installed
 pcall(require('telescope').load_extension, 'fzf')
 pcall(require('telescope').load_extension, 'ui-select')
+pcall(require('telescope').load_extension, 'file_browser')
 
 -- See `:help telescope.builtin`
 local builtin = require 'telescope.builtin'
@@ -41,6 +46,9 @@ vim.keymap.set('n', '<leader>sg', builtin.live_grep, { desc = '[S]earch by [G]re
 vim.keymap.set('n', '<leader>sd', builtin.diagnostics, { desc = '[S]earch [D]iagnostics' })
 vim.keymap.set('n', '<leader>sr', builtin.resume, { desc = '[S]earch [R]esume' })
 vim.keymap.set('n', '<leader>s.', builtin.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
+
+-- File browser keymaps
+vim.keymap.set('n', '<leader>bf', require('telescope').extensions.file_browser.file_browser, { desc = '[B]rowse [F]iles' })
 
 vim.keymap.set('n', '<leader>/', function()
   builtin.current_buffer_fuzzy_find(require('telescope.themes').get_dropdown {
