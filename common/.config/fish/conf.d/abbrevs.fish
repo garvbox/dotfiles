@@ -17,3 +17,15 @@ abbr -a k "kubectl"
 abbr -a pvim "poetry run nvim"
 # Granted
 alias assume="source (brew --prefix)/bin/assume.fish"
+
+# Go a little crazy with the tools...
+alias cat="bat --paging=never"
+alias less="bat"
+alias more="bat"
+alias l="eza"
+alias ls="eza"
+alias grep="rg"
+alias find="fd"
+
+# Trim the fat from tree outputs
+alias tree="tree -C -I '__pycache__'"
