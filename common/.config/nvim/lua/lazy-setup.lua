@@ -26,8 +26,6 @@ require('lazy').setup({
   'tpope/vim-sleuth',
   -- JSON & YAML Schema Stores
   'b0o/SchemaStore.nvim',
-  -- Copilot
-  'github/copilot.vim',
   -- Useful plugin to show you pending keybinds.
   { 'folke/which-key.nvim', opts = {} },
   -- "gc" to comment visual regions/lines
