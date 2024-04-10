@@ -14,7 +14,6 @@ abbr -a gfp "git commit --amend --no-edit && git push --force"
 # Misc
 alias vim="nvim"
 abbr -a k "kubectl"
-abbr -a pyvim "poetry run nvim"
 # Granted
 alias assume="source (brew --prefix)/bin/assume.fish"
 
