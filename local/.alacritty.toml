@@ -6,15 +6,15 @@ import = [
 [font]
 size = 12.0
 [font.normal]
-family = "MesloLGS NF"
+family = "Hack Nerd Font"
 style = "Regular"
 [font.bold]
-family = "MesloLGS NF"
+family = "Hack Nerd Font"
 style = "Bold"
 [font.italic]
-family = "MesloLGS NF"
+family = "Hack Nerd Font"
 style = "Italic"
 [font.bold_italic]
-family = "MesloLGS NF"
+family = "Hack Nerd Font"
 style = "Bold Italic"
 
