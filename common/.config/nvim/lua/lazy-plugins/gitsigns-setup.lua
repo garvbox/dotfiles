@@ -2,6 +2,7 @@ return {
   -- Adds git related signs to the gutter, as well as utilities for managing changes
   -- Setup is stored in plugins/gitsigns-setup.lua
   'lewis6991/gitsigns.nvim',
+  event = 'VeryLazy',
   config = function()
     local keymap = vim.keymap.set
     local gs = require 'gitsigns'
