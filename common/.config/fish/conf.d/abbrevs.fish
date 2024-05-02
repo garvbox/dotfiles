@@ -10,6 +10,7 @@ abbr -a gp "git push"
 abbr -a gst "git status"
 abbr -a gup "git checkout master && git fetch --all --prune && git pull"
 abbr -a gfp "git commit --amend --no-edit && git push --force"
+abbr -a lg "lazygit"
 
 # Misc
 alias vim="nvim"
