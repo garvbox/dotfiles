@@ -68,30 +68,23 @@ require('mason-lspconfig').setup()
 --  If you want to override the default filetypes that your language server will attach to you can
 --  define the property 'filetypes' to the map in question.
 local servers = {
-  -- clangd = {},
-  -- gopls = {},
-  pyright = {
-    settings = {
-      pyright = {
-        -- Using Ruff's import organizer
-        disableOrganizeImports = true,
-      },
-      python = {
-        analysis = {
-          -- Ignore all files for analysis to exclusively use Ruff for linting
-          ignore = { '*' },
-        },
+  pylsp = {
+    pylsp = {
+      plugins = {
+        -- Non-ruff linters should be disabled by the ruff plugin but disabling here incase that
+        -- has issues loading or gets removed
+        pyflakes = { enabled = false },
+        mccabe = { enabled = false },
+        pycodestyle = { enabled = false },
+        autopep8 = { enabled = false },
+        yapf = { enabled = false },
+        rope_autoimport = { enabled = true },
       },
     },
   },
-
   rust_analyzer = {},
-  ruff_lsp = {},
-  -- tsserver = {},
-  -- html = { filetypes = { 'html', 'twig', 'hbs'} },
   pest_ls = {},
   yamlls = {},
-
   lua_ls = {
     Lua = {
       workspace = { checkThirdParty = false },
