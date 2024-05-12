@@ -3,15 +3,10 @@ return {
   'echasnovski/mini.nvim',
   event = 'InsertEnter',
   config = function()
-    -- Better Around/Inside textobjects
-    --
-    -- Examples:
-    --  - va)  - [V]isually select [A]round [)]paren
-    --  - yinq - [Y]ank [I]nside [N]ext [']quote
-    --  - ci'  - [C]hange [I]nside [']quote
     require('mini.ai').setup { n_lines = 500 }
-
-    -- Add/delete/replace surroundings (brackets, quotes, etc.)
     require('mini.surround').setup()
+    require('mini.statusline').setup {
+      use_icons = vim.g.have_nerd_font,
+    }
   end,
 }
