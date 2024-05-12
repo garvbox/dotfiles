@@ -1,16 +1,14 @@
 # dotfiles
 
-Dotfiles are laid out for use of [chezmoi](https://github.com/twpayne/chezmoi), with installation
-and configuration done automatically by [install.sh](./install.sh). Setup is ideally machine portable
-but there are some external dependencies that are left out due to MacOS/Linux differences.
-
-The setup script will download Chezmoi and apply its config from this dotfiles repo, then download
-themes and plugins required to support the config.
+Dotfiles are laid out for use of gnu stow , with installation and configuration done automatically
+by [install.sh](./install.sh). Setup is ideally machine portable but there are some external
+dependencies that are left out due to MacOS/Linux differences.
 
 ## Required Tools
 
 The following CLI tools are configured and should be installed to make best use of the config:
 
+* stow
 * bat
 * fd-find
 * fzf
