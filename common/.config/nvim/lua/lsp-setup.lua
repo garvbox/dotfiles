@@ -83,7 +83,6 @@ local servers = {
     },
   },
   rust_analyzer = {},
-  pest_ls = {},
   yamlls = {},
   lua_ls = {
     Lua = {
