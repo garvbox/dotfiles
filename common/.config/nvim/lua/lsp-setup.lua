@@ -79,9 +79,11 @@ local servers = {
         autopep8 = { enabled = false },
         yapf = { enabled = false },
         rope_autoimport = { enabled = true },
+        ruff = { enabled = false },
       },
     },
   },
+  ruff_lsp = {},
   rust_analyzer = {},
   yamlls = {},
   lua_ls = {
