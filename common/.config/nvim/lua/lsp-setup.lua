@@ -83,7 +83,7 @@ local servers = {
       },
     },
   },
-  ruff_lsp = {},
+  ruff = {},
   rust_analyzer = {},
   yamlls = {},
   lua_ls = {
