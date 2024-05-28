@@ -71,19 +71,32 @@ local servers = {
   pylsp = {
     pylsp = {
       plugins = {
-        -- Non-ruff linters should be disabled by the ruff plugin but disabling here incase that
-        -- has issues loading or gets removed
         pyflakes = { enabled = false },
         mccabe = { enabled = false },
         pycodestyle = { enabled = false },
         autopep8 = { enabled = false },
         yapf = { enabled = false },
+        pylint = { enabled = false },
         rope_autoimport = { enabled = true },
-        ruff = { enabled = false },
       },
     },
   },
-  ruff = {},
+  pyright = {
+    pyright = {
+      disableOrganizeImports = true,
+      -- PyLSP/Rope used for language services as it has much better understanding of fixtures
+      disableLanguageServices = true,
+    },
+    python = {
+      analysis = {
+        typeCheckingMode = "basic",
+        diagnosticSeverityOverrides = {
+          reportAttributeAccessIssue = "none",
+        },
+      },
+    },
+  },
+  ruff_lsp = {},
   rust_analyzer = {},
   yamlls = {},
   lua_ls = {
