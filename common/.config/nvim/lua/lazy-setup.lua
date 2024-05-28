@@ -18,6 +18,7 @@ vim.opt.rtp:prepend(lazypath)
 require('lazy').setup({
   -- Basic plugins with no setup listed here, ones with any setup functions or options are
   -- in lazy-plugins
+  'github/copilot.vim',
 
   -- Git related plugins
   'tpope/vim-fugitive',
@@ -27,7 +28,7 @@ require('lazy').setup({
   -- JSON & YAML Schema Stores
   'b0o/SchemaStore.nvim',
   -- Useful plugin to show you pending keybinds.
-  { 'folke/which-key.nvim', opts = {} },
+  { 'folke/which-key.nvim',  opts = {} },
   -- "gc" to comment visual regions/lines
   { 'numToStr/Comment.nvim', opts = {} },
 
