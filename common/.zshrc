@@ -72,7 +72,6 @@ alias find="fd"
 alias tree="tree -C -I '__pycache__'"
 
 # Shell integrations
-eval "$(fzf --zsh)"
 eval "$(zoxide init --cmd cd zsh)"
 
 # Fire up the starship
