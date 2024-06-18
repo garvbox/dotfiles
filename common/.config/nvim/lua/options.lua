@@ -8,8 +8,8 @@ vim.o.relativenumber = true
 -- Light coloured width marker
 vim.o.colorcolumn = '100'
 
--- Dark background (for now)
-vim.o.background = 'dark'
+-- background (should be supported by colorscheme)
+vim.o.background = 'light'
 
 -- Set highlight on search
 vim.o.hlsearch = false
