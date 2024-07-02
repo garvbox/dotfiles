@@ -18,7 +18,6 @@ vim.opt.rtp:prepend(lazypath)
 require('lazy').setup({
   -- Basic plugins with no setup listed here, ones with any setup functions or options are
   -- in lazy-plugins
-  'github/copilot.vim',
 
   -- Git related plugins
   'tpope/vim-fugitive',

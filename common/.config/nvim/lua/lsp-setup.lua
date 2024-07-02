@@ -99,6 +99,7 @@ local servers = {
   ruff_lsp = {},
   rust_analyzer = {},
   yamlls = {},
+  tsserver = {},
   lua_ls = {
     Lua = {
       workspace = { checkThirdParty = false },

@@ -31,6 +31,14 @@ keymap('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q
 -- is not what someone will guess without a bit more experience.
 keymap('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
 
+-- Paste helpers for clean buffers
+-- " delete without yanking
+-- nnoremap <leader>d "_d
+-- vnoremap <leader>d "_d
+keymap('n', '<leader>d', '"_d', { desc = 'Delete without yanking' })
+keymap('v', '<leader>d', '"_d', { desc = 'Delete without yanking' })
+keymap('n', '<leader>p', '"_dP', { desc = 'Paste without yanking' })
+
 -- Oil open
 keymap('n', '<leader>o', require('oil').toggle_float, { desc = '[O]il file browser' })
 
