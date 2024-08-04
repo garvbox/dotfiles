@@ -14,6 +14,13 @@ The following CLI tools are configured and should be installed to make best use 
 * fzf
 * delta
 
+## Fonts
+
+Nerd Fonts are required for most of the tools here. Alacritty is generally configured with a font,
+the installation instructions vary by platform so are left as a manual step required depending
+on where this is being used. Fonts are only required for desktop platforms and are not needed
+when only being used as a remote shell.
+
 
 ## Recommended Extras
 
