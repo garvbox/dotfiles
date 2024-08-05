@@ -9,7 +9,7 @@ vim.o.relativenumber = true
 vim.o.colorcolumn = '100'
 
 -- background (should be supported by colorscheme)
-vim.o.background = 'light'
+vim.o.background = 'dark'
 
 -- Set highlight on search
 vim.o.hlsearch = false
