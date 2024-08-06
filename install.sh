@@ -10,6 +10,7 @@ main() {
 	else
 		echo "Running Local Setup"
 		download_alacritty_themes
+		download_delta_themes
 		run_stow_package local
 	fi
 
@@ -65,6 +66,19 @@ download_alacritty_themes() {
 	if [[ ! -d $alacritty_theme_path ]]; then
 		mkdir -p $alacritty_theme_path
 		git clone https://github.com/alacritty/alacritty-theme ${alacritty_theme_path}
+	fi
+}
+
+download_delta_themes() {
+	delta_theme_path="${HOME}/.local/share/delta"
+	if [[ ! -d $delta_theme_path ]]; then
+		mkdir -p $delta_theme_path
+	fi
+	delta_themes_file="${delta_theme_path}/themes.gitconfig"
+	if [[ ! -f $delta_themes_file ]]; then
+		wget -q -O ${delta_themes_file} https://raw.githubusercontent.com/dandavison/delta/main/themes.gitconfig
+	else
+		echo "Delta themes already downloaded"
 	fi
 }
 

@@ -1,5 +1,6 @@
 [include]
 	path = ~/.gitconfig.local
+	path = ~/.local/share/delta/themes.gitconfig
 	# Local Config includes private details, such as email, signingKey
 	# and any machine-specific setup e.g. for 1Pass ssh key
 [gpg]
@@ -26,3 +27,4 @@
 [delta]
 	navigate = true    # use n and N to move between diff sections
 	light = false
+	syntax-theme = gruvbox-dark
