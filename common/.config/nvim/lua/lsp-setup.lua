@@ -79,6 +79,9 @@ local servers = {
     python = {
       analysis = {
         typeCheckingMode = "basic",
+        diagnosticMode = "openFilesOnly",
+        useLibraryCodeForTypes = false,
+        autoSearchPaths = true,
         diagnosticSeverityOverrides = {
           reportAttributeAccessIssue = "none",
         },
