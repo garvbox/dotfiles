@@ -1,11 +1,15 @@
 -- [[ Configure Telescope ]]
 -- See `:help telescope` and `:help telescope.setup()`
+local actions = require('telescope.actions')
 require('telescope').setup {
   defaults = {
     mappings = {
       i = {
         -- ['<esc>'] = require('telescope.actions').close,
       },
+      n = {
+        ['dd'] = actions.delete_buffer,
+      }
     },
   },
   extensions = {
