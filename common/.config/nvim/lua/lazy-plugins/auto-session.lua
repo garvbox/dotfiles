@@ -6,6 +6,6 @@ return {
   },
   opts = {
     auto_session_suppress_dirs = { '~/', '~/Projects', '~/Downloads', '/' },
-    auto_session_restore = false,
+    auto_restore_enabled = false
   }
 }
