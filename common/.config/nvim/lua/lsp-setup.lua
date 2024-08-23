@@ -88,10 +88,7 @@ local servers = {
       },
     },
   },
-  -- ruff_lsp = {},
-  ruff = {
-    codeAction = { disableRuleComment = { enable = false } }
-  },
+  ruff = {},
   rust_analyzer = {},
   yamlls = {},
   lua_ls = {
@@ -133,3 +130,13 @@ mason_lspconfig.setup_handlers {
     }
   end,
 }
+
+-- Ruff doesnt use the standard `settings` base key so it needs a custom setup here after binding
+-- with mason
+require('lspconfig').ruff.setup({
+  init_options = {
+    settings = {
+      codeAction = { disableRuleComment = { enable = false } }
+    }
+  }
+})
