@@ -66,7 +66,7 @@ local servers = {
         autopep8 = { enabled = false },
         yapf = { enabled = false },
         pylint = { enabled = false },
-        rope_autoimport = { enabled = true },
+        rope_autoimport = { enabled = true, memory = true, },
       },
     },
   },
