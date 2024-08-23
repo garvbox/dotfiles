@@ -88,7 +88,10 @@ local servers = {
       },
     },
   },
-  ruff_lsp = {},
+  -- ruff_lsp = {},
+  ruff = {
+    codeAction = { disableRuleComment = { enable = false } }
+  },
   rust_analyzer = {},
   yamlls = {},
   lua_ls = {
