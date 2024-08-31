@@ -6,6 +6,12 @@ if [[ -d "$HOME/.local/bin" ]] then
   export PATH="$HOME/.local/bin:$PATH"
 fi
 
+# This is added to .profile but not automatically sourced with an ssh shell, so adding here.
+# The script does not add a duplicate to the PATH so its safe to source twice
+if [[ -f "$HOME/.cargo/env" ]] then
+  source "$HOME/.cargo/env"
+fi
+
 # Install zinit if needed
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 [ ! -d $ZINIT_HOME ] && mkdir -p "$(dirname $ZINIT_HOME)"

@@ -4,6 +4,7 @@ format = """
 [](color_orange)\
 $os\
 $username\
+$hostname\
 [](fg:color_orange bg:color_yellow)\
 $directory\
 [](fg:color_yellow bg:color_aqua)\
@@ -52,6 +53,12 @@ show_always = true
 style_user = "bg:color_orange fg:color_fg0"
 style_root = "bg:color_orange fg:color_fg0"
 format = '[ $user ]($style)'
+
+[hostname]
+disabled = false
+style = "bg:color_orange fg:color_fg0"
+format = '[$ssh_symbol$hostname]($style)'
+ssh_symbol = '🌐'
 
 [palettes.gruvbox_dark]
 color_fg0 = '#fbf1c7'
