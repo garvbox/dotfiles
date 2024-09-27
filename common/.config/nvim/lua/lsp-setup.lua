@@ -57,24 +57,10 @@ require('mason-lspconfig').setup()
 --  If you want to override the default filetypes that your language server will attach to you can
 --  define the property 'filetypes' to the map in question.
 local servers = {
-  pylsp = {
-    pylsp = {
-      plugins = {
-        pyflakes = { enabled = false },
-        mccabe = { enabled = false },
-        pycodestyle = { enabled = false },
-        autopep8 = { enabled = false },
-        yapf = { enabled = false },
-        pylint = { enabled = false },
-        rope_autoimport = { enabled = true, memory = true, },
-      },
-    },
-  },
   pyright = {
     pyright = {
       disableOrganizeImports = true,
-      -- PyLSP/Rope used for language services as it has much better understanding of fixtures
-      disableLanguageServices = true,
+      disableLanguageServices = false,
     },
     python = {
       analysis = {
