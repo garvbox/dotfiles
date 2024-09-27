@@ -93,6 +93,11 @@ local servers = {
       },
     },
   },
+  eslint = {
+    packageManager = "yarn",
+  },
+  volar = {},
+  ts_ls = {},
 }
 
 -- nvim-cmp supports additional completion capabilities, so broadcast that to servers
@@ -117,12 +122,41 @@ mason_lspconfig.setup_handlers {
   end,
 }
 
+local lspconfig = require('lspconfig')
 -- Ruff doesnt use the standard `settings` base key so it needs a custom setup here after binding
 -- with mason
-require('lspconfig').ruff.setup({
+lspconfig.ruff.setup({
   init_options = {
     settings = {
       codeAction = { disableRuleComment = { enable = false } }
     }
   }
 })
+
+lspconfig.eslint.setup({
+  on_attach = function(client, bufnr)
+    vim.api.nvim_create_autocmd("BufWritePre", {
+      buffer = bufnr,
+      command = "EslintFixAll",
+    })
+  end,
+})
+
+
+-- If you are using mason.nvim, you can get the ts_plugin_path like this
+local mason_registry = require('mason-registry')
+local vue_language_server_path = mason_registry.get_package('vue-language-server'):get_install_path() ..
+    '/node_modules/@vue/language-server'
+
+lspconfig.ts_ls.setup {
+  init_options = {
+    plugins = {
+      {
+        name = '@vue/typescript-plugin',
+        location = vue_language_server_path,
+        languages = { 'vue' },
+      },
+    },
+  },
+  filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue' },
+}
