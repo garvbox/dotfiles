@@ -10,6 +10,7 @@ $directory\
 [](fg:yellow bg:green)\
 $git_branch\
 $git_status\
+$git_metrics\
 [](fg:green bg:sapphire)\
 $rust\
 $golang\
@@ -73,6 +74,12 @@ format = '[[ $symbol $branch ](fg:overlay0 bg:green)]($style)'
 [git_status]
 style = "bg:green"
 format = '[[($all_status$ahead_behind )](fg:overlay0 bg:green)]($style)'
+
+[git_metrics]
+disabled = false
+added_style = "fg:overlay0 bold bg:green"
+deleted_style = "fg:overlay0 red bg:green"
+format = '([+$added ]($added_style))([-$deleted ]($deleted_style))'
 
 [rust]
 symbol = ""
