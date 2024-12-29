@@ -69,7 +69,7 @@ alias vim="nvim"
 alias cat="bat"
 alias ls="exa"
 alias k="kubectl"
-alias gup="git checkout master && git fetch --all --prune && git pull"
+alias gup="git checkout $(git_main_branch) && git fetch --all --prune && git pull"
 alias dcp="docker-compose --profile"
 # Go a little crazy with the tools...
 alias cat="bat --paging=never"
