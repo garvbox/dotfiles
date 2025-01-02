@@ -8,8 +8,6 @@ config.hide_tab_bar_if_only_one_tab = true
 config.window_decorations = "RESIZE"
 config.initial_rows = 48
 config.initial_cols = 160
--- This is supposed to be the default setting, but somehow it needs to be set,
--- otherwise the fonts look skinny and weird next to alacritty
-config.front_end = "WebGpu"
+config.enable_wayland = false
 
 return config
