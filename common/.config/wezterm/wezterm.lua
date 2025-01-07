@@ -10,4 +10,7 @@ config.initial_rows = 48
 config.initial_cols = 160
 config.enable_wayland = false
 
+-- This is the default value but is needed to be set explicitly for MacOS
+config.front_end = 'WebGpu'
+
 return config
