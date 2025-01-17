@@ -1,8 +1,8 @@
 [include]
-	path = ~/.gitconfig.local
-	path = ~/.local/share/delta/themes.gitconfig
 	# Local Config includes private details, such as email, signingKey
 	# and any machine-specific setup e.g. for 1Pass ssh key
+	path = ~/.gitconfig.local
+	path = ~/.local/share/delta/catppuccin.gitconfig
 [gpg]
 	format = ssh
 [commit]
@@ -13,7 +13,6 @@
 	ff = true
 [push]
 	autoSetupRemote = true
-# Visual setup for delta (see delta-io/delta-rs)
 [merge]
 	conflictstyle = diff3
 [diff]
@@ -27,4 +26,4 @@
 [delta]
 	navigate = true    # use n and N to move between diff sections
 	light = false
-	syntax-theme = Catppuccin Mocha
+	features = catppuccin-mocha

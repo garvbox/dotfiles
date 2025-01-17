@@ -11,6 +11,7 @@ main() {
 		echo "Running Local Setup"
 		download_alacritty_themes
 		download_delta_themes
+		download_bat_themes
 		run_stow_package local
 	fi
 
@@ -64,6 +65,7 @@ run_stow_package() {
 download_alacritty_themes() {
 	alacritty_theme_path="${HOME}/.config/alacritty/themes"
 	if [[ ! -d $alacritty_theme_path ]]; then
+		echo "Downloading Alacritty themes file"
 		mkdir -p $alacritty_theme_path
 		git clone https://github.com/alacritty/alacritty-theme ${alacritty_theme_path}
 	fi
@@ -74,12 +76,27 @@ download_delta_themes() {
 	if [[ ! -d $delta_theme_path ]]; then
 		mkdir -p $delta_theme_path
 	fi
-	delta_themes_file="${delta_theme_path}/themes.gitconfig"
+	delta_themes_file="${delta_theme_path}/catppuccin.gitconfig"
 	if [[ ! -f $delta_themes_file ]]; then
-		wget -q -O ${delta_themes_file} https://raw.githubusercontent.com/dandavison/delta/main/themes.gitconfig
+		echo "Downloading Delta themes file"
+		wget -q -O ${delta_themes_file} https://raw.githubusercontent.com/catppuccin/delta/main/catppuccin.gitconfig
 	else
 		echo "Delta themes already downloaded"
 	fi
+}
+
+download_bat_themes() {
+	bat_themes_path="$(bat --config-dir)/themes"
+
+	if [[ ! -d $bat_themes_path ]]; then
+		mkdir -p $bat_themes_path
+	fi
+	echo "Downloading Bat themes"
+	wget -q -P ${bat_themes_path} https://github.com/catppuccin/bat/raw/main/themes/Catppuccin%20Latte.tmTheme
+	wget -q -P ${bat_themes_path} https://github.com/catppuccin/bat/raw/main/themes/Catppuccin%20Frappe.tmTheme
+	wget -q -P ${bat_themes_path} https://github.com/catppuccin/bat/raw/main/themes/Catppuccin%20Macchiato.tmTheme
+	wget -q -P ${bat_themes_path} https://github.com/catppuccin/bat/raw/main/themes/Catppuccin%20Mocha.tmTheme
+	bat cache --build
 }
 
 main
