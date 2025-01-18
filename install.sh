@@ -12,7 +12,6 @@ main() {
 		download_alacritty_themes
 		download_delta_themes
 		download_bat_themes
-		run_stow_package local
 	fi
 
 	# Common setup items for local and codespaces
