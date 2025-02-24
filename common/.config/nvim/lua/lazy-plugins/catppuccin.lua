@@ -3,7 +3,7 @@ return {
   name = "catppuccin",
   priority = 1000,
   opts = {},
-  config = function()
-    vim.cmd.colorscheme 'catppuccin'
-  end,
+  -- config = function()
+  --   vim.cmd.colorscheme 'catppuccin'
+  -- end,
 }

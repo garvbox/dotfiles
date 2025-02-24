@@ -11,7 +11,6 @@ main() {
 		echo "Running Local Setup"
 		download_alacritty_themes
 		download_delta_themes
-		download_bat_themes
 	fi
 
 	# Common setup items for local and codespaces
@@ -26,10 +25,8 @@ command_exists() {
 
 codespace_install_setup() {
 	echo "Running Codespaces-Specific setup"
-	echo "Setting Fish shell default"
-	sudo chsh "$(id -un)" --shell "/usr/bin/fish"
-	# Installing fish in codespaces puts some default config in, remove it
-	rm -rf $HOME/.config/fish
+	echo "Setting Zsh shell default"
+	sudo chsh "$(id -un)" --shell "/usr/bin/zsh"
 }
 
 install_tpm() {
@@ -75,27 +72,13 @@ download_delta_themes() {
 	if [[ ! -d $delta_theme_path ]]; then
 		mkdir -p $delta_theme_path
 	fi
-	delta_themes_file="${delta_theme_path}/catppuccin.gitconfig"
+	delta_themes_file="${delta_theme_path}/themes.gitconfig"
 	if [[ ! -f $delta_themes_file ]]; then
 		echo "Downloading Delta themes file"
-		wget -q -O ${delta_themes_file} https://raw.githubusercontent.com/catppuccin/delta/main/catppuccin.gitconfig
+		wget -q -O ${delta_themes_file} https://raw.githubusercontent.com/dandavison/delta/main/themes.gitconfig
 	else
 		echo "Delta themes already downloaded"
 	fi
-}
-
-download_bat_themes() {
-	bat_themes_path="$(bat --config-dir)/themes"
-
-	if [[ ! -d $bat_themes_path ]]; then
-		mkdir -p $bat_themes_path
-	fi
-	echo "Downloading Bat themes"
-	wget -q -P ${bat_themes_path} https://github.com/catppuccin/bat/raw/main/themes/Catppuccin%20Latte.tmTheme
-	wget -q -P ${bat_themes_path} https://github.com/catppuccin/bat/raw/main/themes/Catppuccin%20Frappe.tmTheme
-	wget -q -P ${bat_themes_path} https://github.com/catppuccin/bat/raw/main/themes/Catppuccin%20Macchiato.tmTheme
-	wget -q -P ${bat_themes_path} https://github.com/catppuccin/bat/raw/main/themes/Catppuccin%20Mocha.tmTheme
-	bat cache --build
 }
 
 main
