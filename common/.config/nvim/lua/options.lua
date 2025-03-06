@@ -3,7 +3,7 @@
 -- NOTE: You can change these options as you wish!
 
 -- Always relnum!!
-vim.o.relativenumber = true
+vim.o.relativenumber = false
 
 -- Light coloured width marker
 vim.o.colorcolumn = '100'
