@@ -53,6 +53,9 @@ setopt hist_find_no_dups
 # completion using arrow keys (based on history)
 bindkey '^[[A' history-search-backward
 bindkey '^[[B' history-search-forward
+# emacs-style line end jumps
+bindkey '^E' end-of-line
+bindkey '^A' beginning-of-line
 
 # Completion styling
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
