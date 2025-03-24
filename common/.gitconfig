@@ -27,5 +27,3 @@
 	navigate = true    # use n and N to move between diff sections
 	light = false
 	features = gruvmax-fang
-[blame]
-	ignoreRevsFile = .git-blame-ignore-revs
