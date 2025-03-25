@@ -5,7 +5,7 @@ config.color_scheme = 'GruvboxDark'
 
 -- Font setup is for large screens on MacOS, using increased font size.
 -- Use Alacritty if smaller font is needed
-config.font = wezterm.font 'MesloLGS NF'
+config.font = wezterm.font 'JetBrains Mono'
 config.font_size = 14
 
 config.hide_tab_bar_if_only_one_tab = true
