@@ -6,7 +6,8 @@ return {
     "nvim-lua/plenary.nvim",
     "antoinemadec/FixCursorHold.nvim",
     "nvim-treesitter/nvim-treesitter",
-    "nvim-neotest/neotest-python"
+    "nvim-neotest/neotest-python",
+    "rouge8/neotest-rust",
   },
   config = function()
     local keymap = vim.keymap.set
@@ -24,7 +25,8 @@ return {
             return vim.startswith(file_name, "test_") or vim.endswith(file_name, "_test.py") or
                 vim.endswith(file_name, "_tests.py")
           end
-        })
+        }),
+        require("neotest-rust"),
       },
     })
 
