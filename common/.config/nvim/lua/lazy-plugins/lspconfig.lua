@@ -8,6 +8,9 @@ return {
 
     -- Useful status updates for LSP.
     { 'j-hui/fidget.nvim', opts = {} },
+
+    -- Allows extra capabilities provided by blink.cmp
+    'saghen/blink.cmp',
   },
   config = function()
     vim.api.nvim_create_autocmd('LspAttach', {
@@ -129,9 +132,9 @@ return {
       },
     }
 
-    -- local capabilities = require('blink.cmp').get_lsp_capabilities()
-    local capabilities = vim.lsp.protocol.make_client_capabilities()
-    capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
+    local capabilities = require('blink.cmp').get_lsp_capabilities()
+    -- local capabilities = vim.lsp.protocol.make_client_capabilities()
+    -- capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 
     local servers = {
       marksman = {},
