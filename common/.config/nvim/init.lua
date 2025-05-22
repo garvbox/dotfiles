@@ -19,9 +19,6 @@ require("telescope-setup")
 -- [[ Configure Treesitter ]]
 require("treesitter-setup")
 
--- [[ Configure LSP ]]
-require("lsp-setup")
-
 -- [[ Configure nvim-cmp ]]
 require("cmp-setup")
 
