@@ -135,18 +135,20 @@ return {
     local servers = {
       marksman = {},
       pyright = {
-        pyright = {
-          disableOrganizeImports = true,
-          disableLanguageServices = false,
-        },
-        python = {
-          analysis = {
-            typeCheckingMode = 'basic',
-            diagnosticMode = 'openFilesOnly',
-            useLibraryCodeForTypes = false,
-            autoSearchPaths = true,
-            diagnosticSeverityOverrides = {
-              reportAttributeAccessIssue = 'none',
+        settings = {
+          pyright = {
+            disableOrganizeImports = false,
+            disableLanguageServices = false,
+          },
+          python = {
+            analysis = {
+              typeCheckingMode = 'basic',
+              diagnosticMode = 'openFilesOnly',
+              useLibraryCodeForTypes = false,
+              autoSearchPaths = true,
+              diagnosticSeverityOverrides = {
+                reportAttributeAccessIssue = 'none',
+              },
             },
           },
         },
@@ -161,10 +163,14 @@ return {
       rust_analyzer = {},
       yamlls = {},
       lua_ls = {
-        Lua = {
-          workspace = { checkThirdParty = false },
-          telemetry = { enable = false },
-          diagnostics = { globals = { 'vim' } },
+        settings = {
+          Lua = {
+            workspace = {
+              checkThirdParty = false,
+              library = { vim.env.VIMRUNTIME },
+            },
+            telemetry = { enable = false },
+          },
         },
       },
       jsonls = {
