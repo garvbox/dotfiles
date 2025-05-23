@@ -157,6 +157,7 @@ return {
         init_options = {
           settings = {
             codeAction = { disableRuleComment = { enable = false } },
+            configurationPreference = 'filesystemFirst',
           },
         },
       },
