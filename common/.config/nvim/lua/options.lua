@@ -1,8 +1,10 @@
 -- Various Top-level VIM options
 -- See `:help vim.o`
--- NOTE: You can change these options as you wish!
 
--- Always relnum!!
+-- Set to true if you have a Nerd Font installed and selected in the terminal
+vim.g.have_nerd_font = false
+
+-- Relnum disabled as its confusing while sharing and I dont use the numbers that much
 vim.o.relativenumber = false
 
 -- Light coloured width marker
@@ -24,9 +26,10 @@ vim.o.mouse = 'a'
 vim.opt.showmode = false
 
 -- Sync clipboard between OS and Neovim.
---  Remove this option if you want your OS clipboard to remain independent.
---  See `:help 'clipboard'`
-vim.o.clipboard = 'unnamedplus'
+--  Schedule the setting after `UiEnter` because it can increase startup-time.
+vim.schedule(function()
+  vim.o.clipboard = 'unnamedplus'
+end)
 
 -- Enable break indent
 vim.o.breakindent = true
@@ -49,8 +52,24 @@ vim.o.timeoutlen = 300
 vim.o.splitright = true
 vim.o.splitbelow = true
 
--- Set completeopt to have a better completion experience
-vim.o.completeopt = 'menuone,noselect'
+-- Sets how neovim will display certain whitespace characters in the editor.
+--  See `:help 'list'`
+--  and `:help 'listchars'`
+--
+--  Notice listchars is set using `vim.opt` instead of `vim.o`.
+--  It is very similar to `vim.o` but offers an interface for conveniently interacting with tables.
+--   See `:help lua-options`
+--   and `:help lua-options-guide`
+vim.o.list = true
+vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
 
--- NOTE: You should make sure your terminal supports this
-vim.o.termguicolors = true
+-- Show which line your cursor is on
+vim.o.cursorline = true
+
+-- Minimal number of screen lines to keep above and below the cursor.
+vim.o.scrolloff = 10
+
+-- if performing an operation that would fail due to unsaved changes in the buffer (like `:q`),
+-- instead raise a dialog asking if you wish to save the current file(s)
+-- See `:help 'confirm'`
+vim.o.confirm = true
