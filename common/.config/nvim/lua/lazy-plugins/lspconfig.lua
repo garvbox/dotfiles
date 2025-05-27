@@ -139,6 +139,7 @@ return {
           pyright = {
             disableOrganizeImports = false,
             disableLanguageServices = false,
+            disableTaggedHints = true,
           },
           python = {
             analysis = {
