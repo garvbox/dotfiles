@@ -15,7 +15,7 @@ abbr gd "git diff"
 abbr gl "git pull"
 abbr gp "git push"
 abbr gs "git status"
-abbr gup "git checkout master && git fetch --all --prune && git pull"
+abbr gup "git checkout (git_main_branch) && git fetch --all --prune && git pull"
 abbr gfp "git commit --amend --no-edit && git push --force"
 abbr lg "lazygit"
 
