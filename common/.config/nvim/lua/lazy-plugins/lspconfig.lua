@@ -134,14 +134,12 @@ return {
 
     local servers = {
       marksman = {},
-      pyright = {
+      basedpyright = {
         settings = {
-          pyright = {
-            disableOrganizeImports = false,
+          basedpyright = {
+            disableOrganizeImports = true,
             disableLanguageServices = false,
             disableTaggedHints = true,
-          },
-          python = {
             analysis = {
               typeCheckingMode = 'basic',
               diagnosticMode = 'openFilesOnly',
