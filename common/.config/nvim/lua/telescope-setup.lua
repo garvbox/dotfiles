@@ -1,15 +1,19 @@
 -- [[ Configure Telescope ]]
 -- See `:help telescope` and `:help telescope.setup()`
-local actions = require('telescope.actions')
+local actions = require 'telescope.actions'
+local open_with_trouble = require('trouble.sources.telescope').open
+
 require('telescope').setup {
   defaults = {
     mappings = {
       i = {
         -- ['<esc>'] = require('telescope.actions').close,
+        ['<c-t>'] = open_with_trouble,
       },
       n = {
         ['dd'] = actions.delete_buffer,
-      }
+        ['<c-t>'] = open_with_trouble,
+      },
     },
   },
   extensions = {
