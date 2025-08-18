@@ -3,7 +3,7 @@ abbr vim "nvim"
 abbr v "nvim"
 abbr nano "nvim"
 abbr ed "nvim"
-abbr pyvim "source .venv/bin/activate.fish && nvim"
+abbr pyvim "source (poetry env info -p)/bin/activate.fish && nvim"
 
 # Git Abbrevs
 abbr g "git"
