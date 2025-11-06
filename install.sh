@@ -3,16 +3,8 @@ set -e
 
 main() {
 
-	# Codespaces are a fairly specific environment, we can pretty much guarantee that they are
-	# running ubuntu and so can install the tools there first
-	if [[ -n $CODESPACES ]]; then
-		codespace_install_setup
-	else
-		echo "Running Local Setup"
-		download_delta_themes
-	fi
-
-	# Common setup items for local and codespaces
+	echo "Running Dotfiles Setup"
+	download_delta_themes
 	run_stow_package common
 	install_tpm
 	install_starship
@@ -22,11 +14,6 @@ command_exists() {
 	command -v "$1" >/dev/null 2>&1
 }
 
-codespace_install_setup() {
-	echo "Running Codespaces-Specific setup"
-	echo "Setting Zsh shell default"
-	sudo chsh "$(id -un)" --shell "/usr/bin/zsh"
-}
 
 install_tpm() {
 	if [[ ! -d $HOME/.tmux/plugins/tpm ]]; then
