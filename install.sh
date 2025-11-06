@@ -4,6 +4,7 @@ set -e
 main() {
 
 	echo "Running Dotfiles Setup"
+	install_dependent_tools
 	download_delta_themes
 	run_stow_package common
 	install_tpm
@@ -22,6 +23,15 @@ install_tpm() {
 	else
 		echo "Tmux directory exists, skipped setting up TPM"
 	fi
+}
+
+install_dependent_tools() {
+	if ! command_exists brew; then
+		bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+	fi
+
+	# Assumes homebrew has been installed to get this far
+	brew install wget ghostty fish nvim eza zoxide fzf fd bat ripgrep stow git-delta lazygit
 }
 
 install_starship() {
