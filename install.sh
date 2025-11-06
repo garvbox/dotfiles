@@ -9,7 +9,6 @@ main() {
 		codespace_install_setup
 	else
 		echo "Running Local Setup"
-		download_alacritty_themes
 		download_delta_themes
 	fi
 
@@ -55,15 +54,6 @@ run_stow_package() {
 	else
 		echo "Running Stow package: $1"
 		stow -Sv -t $HOME $1
-	fi
-}
-
-download_alacritty_themes() {
-	alacritty_theme_path="${HOME}/.config/alacritty/themes"
-	if [[ ! -d $alacritty_theme_path ]]; then
-		echo "Downloading Alacritty themes file"
-		mkdir -p $alacritty_theme_path
-		git clone https://github.com/alacritty/alacritty-theme ${alacritty_theme_path}
 	fi
 }
 
