@@ -7,6 +7,7 @@ $username\
 $hostname\
 [](bg:color_yellow fg:color_orange)\
 $directory\
+$direnv\
 [](fg:color_yellow bg:color_aqua)\
 $git_branch\
 $git_status\
@@ -90,6 +91,12 @@ truncation_symbol = "…/"
 "Music" = "󰝚 "
 "Pictures" = " "
 "Developer" = "󰲋 "
+
+[direnv]
+symbol = '󱁽 env '
+style = "fg:color_fg0 bg:color_yellow"
+format = '[ $symbol$loaded/$allowed ]($style)'
+disabled = false
 
 [git_branch]
 symbol = ""
