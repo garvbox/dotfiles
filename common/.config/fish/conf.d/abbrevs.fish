@@ -21,13 +21,26 @@ abbr lg "lazygit"
 
 # Misc shell tools
 abbr k "kubectl"
-alias cat "bat --paging=never"
-alias less "bat"
-alias more "bat"
-alias l "eza"
-alias ls "eza"
-alias grep "rg"
-alias find "fd"
+
+if command -q bat
+    alias cat "bat --paging=never"
+    alias less "bat"
+    alias more "bat"
+end
+
+if command -q eza
+    alias l "eza"
+    alias ls "eza"
+end
+
+if command -q rg
+    alias grep "rg"
+end
+
+if command -q fd
+    alias find "fd"
+end
+
 alias tree "tree -C -I '__pycache__'"
 
 # Granted
