@@ -143,7 +143,7 @@ return {
             analysis = {
               typeCheckingMode = 'basic',
               diagnosticMode = 'openFilesOnly',
-              useLibraryCodeForTypes = false,
+              useLibraryCodeForTypes = true,
               autoSearchPaths = true,
               diagnosticSeverityOverrides = {
                 reportAttributeAccessIssue = 'none',
@@ -152,6 +152,7 @@ return {
           },
         },
       },
+      -- ty = {},
       ruff = {
         init_options = {
           settings = {
