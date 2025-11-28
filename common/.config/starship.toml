@@ -44,6 +44,20 @@ colour_success = '#98971a'
 colour_err = '#cc241d'
 colour_replace = '#b16286'
 
+[palettes.tokyonight]
+colour_os_bg = '#a3aed2'
+colour_os_fg = '#090c0c'
+colour_dir_bg = '#769ff0'
+colour_dir_fg = '#e3e5e5'
+colour_lang_bg = '#212736'
+colour_lang_fg = '#769ff0'
+colour_git_bg = '#394260'
+colour_git_fg = '#769ff0'
+colour_time_bg = '#1d2230'
+colour_time_fg = '#a0a9cb'
+colour_replace = '#b16286'
+colour_success = '#98971a'
+colour_err = '#cc241d'
 
 [os]
 disabled = false
