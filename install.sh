@@ -9,7 +9,7 @@ main() {
 	run_stow_package common
 	install_tpm
 	install_starship
-	download_bat_themes
+	download_tokyonight_themes
 }
 
 command_exists() {
@@ -69,20 +69,31 @@ download_delta_themes() {
 	fi
 }
 
-download_bat_themes() {
-	bat_theme_path="${HOME}/.config/bat/themes"
-	if [[ ! -d $bat_theme_path ]]; then
-		mkdir -p $bat_theme_path
-	fi
 
-	# Tokyonight Themes only
+download_tokyonight_themes() {
+	bat_themes_path="${HOME}/.config/bat/themes"
+	fish_themes_path="${HOME}/.config/fish/themes"
+
+	for themes_path in $bat_themes_path $fish_themes_path; do
+		if [[ ! -d $themes_path ]]; then
+			mkdir -p $themes_path
+		fi
+	done
+
 	for theme in day moon night storm; do
-		bat_themes_file="${bat_theme_path}/tokyonight_${theme}.tmTheme"
+		bat_themes_file="${bat_themes_path}/tokyonight_${theme}.tmTheme"
 		if [[ ! -f $bat_themes_file ]]; then
 			echo "Downloading bat themes file: ${bat_themes_file}"
 			wget -q -O ${bat_themes_file} https://raw.githubusercontent.com/folke/tokyonight.nvim/main/extras/sublime/tokyonight_${theme}.tmTheme
 		fi
+
+		fish_themes_file="${fish_themes_path}/tokyonight_${theme}.theme"
+		if [[ ! -f $fish_themes_file ]]; then
+			echo "Downloading fish themes file: ${fish_themes_file}"
+			wget -q -O ${fish_themes_file} https://raw.githubusercontent.com/folke/tokyonight.nvim/main/extras/fish_themes/tokyonight_${theme}.theme
+		fi
 	done
+
 	bat cache --build
 }
 
