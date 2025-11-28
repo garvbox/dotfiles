@@ -9,6 +9,7 @@ main() {
 	run_stow_package common
 	install_tpm
 	install_starship
+	download_bat_themes
 }
 
 command_exists() {
@@ -66,6 +67,23 @@ download_delta_themes() {
 	else
 		echo "Delta themes already downloaded"
 	fi
+}
+
+download_bat_themes() {
+	bat_theme_path="${HOME}/.config/bat/themes"
+	if [[ ! -d $bat_theme_path ]]; then
+		mkdir -p $bat_theme_path
+	fi
+
+	# Tokyonight Themes only
+	for theme in day moon night storm; do
+		bat_themes_file="${bat_theme_path}/tokyonight_${theme}.tmTheme"
+		if [[ ! -f $bat_themes_file ]]; then
+			echo "Downloading bat themes file: ${bat_themes_file}"
+			wget -q -O ${bat_themes_file} https://raw.githubusercontent.com/folke/tokyonight.nvim/main/extras/sublime/tokyonight_${theme}.tmTheme
+		fi
+	done
+	bat cache --build
 }
 
 main
