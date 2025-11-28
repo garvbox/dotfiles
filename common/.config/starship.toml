@@ -27,7 +27,7 @@ $time\
 $line_break$character"""
 
 add_newline = false
-palette = 'gruvbox_dark'
+palette = 'tokyonight'
 
 [palettes.gruvbox_dark]
 colour_os_bg = '#d65d0e'

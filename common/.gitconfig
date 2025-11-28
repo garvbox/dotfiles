@@ -26,4 +26,4 @@
 [delta]
 	navigate = true    # use n and N to move between diff sections
 	light = false
-	features = gruvmax-fang
+	features = tokyonight_moon
