@@ -183,6 +183,22 @@ return {
           },
         },
       },
+      vtsls = {
+        settings = {
+          vtsls = {
+            tsserver = {
+              globalPlugins = {
+                {
+                  name = '@vue/typescript-plugin',
+                  location = '/opt/homebrew/lib/node_modules/@vue/language-server',
+                  languages = { 'vue' },
+                },
+              },
+            },
+          },
+        },
+        filetypes = { 'typescript', 'javascript', 'vue' },
+      },
       vue_ls = {},
     }
 
@@ -194,23 +210,6 @@ return {
       vim.lsp.config(server_name, config)
       vim.lsp.enable(server_name)
     end
-
-    local base_on_attach = vim.lsp.config.eslint.on_attach
-    vim.lsp.config('eslint', {
-      settings = { packageManager = 'yarn' },
-      on_attach = function(client, bufnr)
-        if not base_on_attach then
-          return
-        end
-
-        base_on_attach(client, bufnr)
-        vim.api.nvim_create_autocmd('BufWritePre', {
-          buffer = bufnr,
-          command = 'LspEslintFixAll',
-        })
-      end,
-    })
-    vim.lsp.enable 'eslint'
   end,
 }
 
