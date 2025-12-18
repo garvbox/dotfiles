@@ -134,25 +134,15 @@ return {
 
     local servers = {
       marksman = {},
-      basedpyright = {
+      ty = {
         settings = {
-          basedpyright = {
-            disableOrganizeImports = true,
-            disableLanguageServices = false,
-            disableTaggedHints = true,
-            analysis = {
-              typeCheckingMode = 'basic',
-              diagnosticMode = 'openFilesOnly',
-              useLibraryCodeForTypes = true,
-              autoSearchPaths = true,
-              diagnosticSeverityOverrides = {
-                reportAttributeAccessIssue = 'none',
-              },
+          ty = {
+            completions = {
+              autoImport = true,
             },
           },
         },
       },
-      -- ty = {},
       ruff = {
         init_options = {
           settings = {
