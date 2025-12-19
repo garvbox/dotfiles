@@ -27,17 +27,20 @@ install_tpm() {
 }
 
 install_dependent_tools() {
-	if ! command_exists brew; then
-		bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+	if [[ "$(uname)" == 'Linux' ]]; then
+		# TODO: Handle ubuntu-based setups...
+		sudo dnf install wget ghostty fish nvim eza zoxide fzf fd bat ripgrep stow git-delta lazygit
+	elif [[ "$(uname)" == 'Darwin' ]]; then
+		if ! command_exists brew; then
+			bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+		fi
+		brew install wget ghostty fish nvim eza zoxide fzf fd bat ripgrep stow git-delta lazygit
 	fi
 
-	# Assumes homebrew has been installed to get this far
-	brew install wget ghostty fish nvim eza zoxide fzf fd bat ripgrep stow git-delta lazygit
 }
 
 install_starship() {
 	if ! command_exists starship; then
-
 		echo "Installing Starship"
 		curl -sS https://starship.rs/install.sh | sh -s -- -y
 	else
@@ -73,8 +76,9 @@ download_delta_themes() {
 download_tokyonight_themes() {
 	bat_themes_path="${HOME}/.config/bat/themes"
 	fish_themes_path="${HOME}/.config/fish/themes"
+	tmux_themes_path="${HOME}/.tmux/themes"
 
-	for themes_path in $bat_themes_path $fish_themes_path; do
+	for themes_path in $bat_themes_path $fish_themes_path $tmux_themes_path; do
 		if [[ ! -d $themes_path ]]; then
 			mkdir -p $themes_path
 		fi
@@ -91,6 +95,12 @@ download_tokyonight_themes() {
 		if [[ ! -f $fish_themes_file ]]; then
 			echo "Downloading fish themes file: ${fish_themes_file}"
 			wget -q -O ${fish_themes_file} https://raw.githubusercontent.com/folke/tokyonight.nvim/main/extras/fish_themes/tokyonight_${theme}.theme
+		fi
+
+		tmux_themes_file="${tmux_themes_path}/tokyonight_${theme}.tmux"
+		if [[ ! -f $tmux_themes_file ]]; then
+			echo "Downloading tmux themes file: ${fish_themes_file}"
+			wget -q -O ${tmux_themes_file} https://raw.githubusercontent.com/folke/tokyonight.nvim/main/extras/tmux/tokyonight_${theme}.tmux
 		fi
 	done
 
