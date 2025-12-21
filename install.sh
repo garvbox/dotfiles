@@ -29,7 +29,8 @@ install_tpm() {
 install_dependent_tools() {
 	if [[ "$(uname)" == 'Linux' ]]; then
 		# TODO: Handle ubuntu-based setups...
-		sudo dnf install wget ghostty fish nvim eza zoxide fzf fd bat ripgrep stow git-delta lazygit
+		sudo dnf install --skip-unavailable \
+			wget ghostty fish nvim eza zoxide fzf fd bat ripgrep stow git-delta lazygit
 	elif [[ "$(uname)" == 'Darwin' ]]; then
 		if ! command_exists brew; then
 			bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
