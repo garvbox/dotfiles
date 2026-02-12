@@ -13,9 +13,6 @@ require("options")
 -- [[ Basic Keymaps ]]
 require("keymaps")
 
--- [[ Telescope Setup ]]
-require("telescope-setup")
-
 -- [[ Configure Treesitter ]]
 require("treesitter-setup")
 
