@@ -40,7 +40,7 @@ keymap('v', '<leader>d', '"_d', { desc = 'Delete without yanking' })
 keymap('n', '<leader>p', '"_dP', { desc = 'Paste without yanking' })
 
 -- Oil open
-keymap('n', '<leader>o', require('oil').toggle_float, { desc = '[O]il file browser' })
+keymap('n', '<leader>o', function() require('oil').toggle_float() end, { desc = '[O]il file browser' })
 
 -- [[ Highlight on yank ]]
 -- See `:help vim.highlight.on_yank()`
