@@ -27,7 +27,22 @@ $time\
 $line_break$character"""
 
 add_newline = false
-palette = 'tokyonight'
+palette = 'carbonfox'
+
+[palettes.carbonfox]
+colour_os_bg = '#78a9ff'
+colour_os_fg = '#161616'
+colour_dir_bg = '#33b1ff'
+colour_dir_fg = '#161616'
+colour_git_bg = '#484848'
+colour_git_fg = '#33b1ff'
+colour_lang_bg = '#353535'
+colour_lang_fg = '#78a9ff'
+colour_time_bg = '#282828'
+colour_time_fg = '#dfdfe0'
+colour_success = '#25be6a'
+colour_err = '#ee5396'
+colour_replace = '#be95ff'
 
 [palettes.gruvbox_dark]
 colour_os_bg = '#d65d0e'
