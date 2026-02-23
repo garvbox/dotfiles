@@ -1,7 +1,7 @@
 local wezterm = require("wezterm")
 local config = wezterm.config_builder()
 
-config.color_scheme = "Tokyo Night Moon"
+config.color_scheme = "carbonfox"
 
 -- Font setup is for large screens on MacOS, using increased font size.
 -- Use Alacritty if smaller font is needed
