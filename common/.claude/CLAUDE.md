@@ -8,6 +8,7 @@
 
 - Make the plan extremely concise. Sacrifice grammar for the sake of concision.
 - Interview me for answers to any questions and adjust the plan accordingly
+- When working through a multi-stage plan, commit progress at the completion of each step and ask before proceeding to the next step.
 - When fixing known issues, practise test-driven development. Plan to write a failing test first to confirm the behaviour is as suspected, then fix the issue and re-run the test. After fixing the issue propose refactoring to tidy up the affected area if it is needed.
 
 ## Code Standards
@@ -24,4 +25,9 @@
 - Use poetry to manage dependencies and run any python scripts and tools whenever a `pyproject.toml` file is found that uses poetry.
 - Use the available linting and type checking tools in the current repository dependencies.
 - Tests can be run using `pytest`, optionally including the specific test module for faster execution, and/or the specific test for quickest focus tests.
+
+## Dev Environment - Rust
+
+- Always run formatting with `cargo fmt`
+- Run linting with `cargo clippy --all --tests --all-features --no-deps -- -D warnings`
 
