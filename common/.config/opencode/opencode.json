@@ -36,8 +36,8 @@
       "curl *": "allow",
       "grep *": "allow",
       "ls *": "allow",
+      "wc *": "allow",
       "echo *": "allow",
-      "head *": "allow",
       "find *": "allow",
       "sed *": "allow",
       "sort *": "allow",
@@ -45,6 +45,7 @@
       "mkdir *": "allow",
       "touch *": "allow",
       "pkill *": "allow",
+      "head *": "allow",
       "tail *": "allow"
     },
     "edit": "allow"
