@@ -5,6 +5,7 @@
 - No yapping, keep it concise and reduce the use of emojis
 - When fixing smaller specific issues as a standalone task, practise test-driven development. Write a failing test first to confirm the behaviour is as suspected, then fix the issue and re-run the test. After fixing the issue propose refactoring to tidy up the affected area if it is needed.
 - When working through a multi-step process or list of TODOs, commit progress at the completion of each step, stop and ask before proceeding to the next step.
+- Always make a new branch before committing any changes. **NEVER** commit to main or master.
 
 
 ## Plan Mode
