@@ -128,3 +128,15 @@ toolName = "run_shell_command"
 commandPrefix = "cargo publish"
 decision = "deny"
 priority = 1000
+
+[[rule]]
+toolName = "run_shell_command"
+commandPrefix = "kubectl get"
+decision = "allow"
+priority = 100
+
+[[rule]]
+toolName = "run_shell_command"
+commandPrefix = "kubectl logs"
+decision = "allow"
+priority = 100
