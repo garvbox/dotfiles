@@ -1,40 +1,23 @@
-# AGENTS.md
+# Agents.md - global default agent instructions
 
-## General Instructions
+## Version Control
 
-- No yapping, keep it concise and reduce the use of emojis
-- When fixing smaller specific issues as a standalone task, practise test-driven development. Write a failing test first to confirm the behaviour is as suspected, then fix the issue and re-run the test. After fixing the issue propose refactoring to tidy up the affected area if it is needed.
-- When working through a multi-step process or list of TODOs, commit progress at the completion of each step, stop and ask before proceeding to the next step.
-- Always make a new branch before committing any changes. **NEVER** commit to main or master.
+- Always ask before committing anything
+- The default branch is usually `master`, never commit to this branch.
+- Commits and branches need a jira ticket, if you do not have one from the current branch name you
+  should ask for it before creating a branch.
+- Branches are named as follows: `eng-#####--brief-description-of-branch`, where eng-##### is a reference
+  to a jira ticket.
+- Append a semver tag and jira ticket reference on the end of each commit, following this syntax:
+    `[major|minor|patch][ENG-xxxx]`. Ask for a jira ticket if one is not provided
 
+## Dev Environment
 
-## Plan Mode
+- Use poetry to manage dependencies and run any python scripts whenever a `pyproject.toml` file is found that uses poetry.
 
-- Make the plan extremely concise. Sacrifice grammar for the sake of concision.
+## Code Standards - Python
 
-## PR Preferences
-
-- PR descriptions should be brief, the reviewer will need to look at the code and understand it so too much content in the description is distracting.
-- Do NOT put a Summary heading section in PR descriptions. 
-- Do NOT put a Testing or Test Plan section in PR descriptions.
-
-## Code Standards
-
-- Do not add any unnecessary function docstrings or "what" comments, instead use good function naming and overall
-  module structure so that code is self-documenting whenever possible. Comments should **only** be used when
-  the behaviour is not obvious and needs some explanation.
-- Unit tests should be named with the following standard: `test_<function_tested>_when_<test_behaviour_when_predicate>`.
-  For example, if testing a function `do_something`, and examining the behaviour when duplicates input, the test name
-  would be `test_do_something_detects_duplicates_when_duplicates_input`
-
-## Dev Environment - Python
-
-- Use poetry to manage dependencies and run any python scripts and tools whenever a `pyproject.toml` file is found that uses poetry.
-- Always use the available linting, formatting and type checking tools in the current repository dependencies before committing changes.
-- Tests should be run using `pytest`, preferring to run tests in the specific area being changed.
-
-## Dev Environment - Rust
-
-- Always run formatting with `cargo fmt`
-- Run linting with `cargo clippy --all --tests --all-features --no-deps -- -D warnings`
+- Use the available linting and type checking tools in the current repository, mainly `ruff` and `ty`.
+- Tests can be run using `poetry run pytest`, optionally including the specific test module for faster execution,
+  and/or the specific test for quickest focus tests.
 

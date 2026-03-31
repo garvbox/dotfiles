@@ -1,22 +1,15 @@
 {
-  "general": {
-    "sessionRetention": {
-      "enabled": true,
-      "maxAge": "30d",
-      "warningAcknowledged": true
-    }
-  },
-  "context": {
-    "fileName": [
-      "AGENTS.md",
-      "CLAUDE.md",
-      "CONTEXT.md",
-      "GEMINI.md"
-    ]
-  },
   "security": {
     "auth": {
       "selectedType": "oauth-personal"
+    }
+  },
+  "general": {
+    "previewFeatures": true,
+    "sessionRetention": {
+      "warningAcknowledged": true,
+      "enabled": true,
+      "maxAge": "30d"
     }
   }
 }
