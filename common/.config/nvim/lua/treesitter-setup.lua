@@ -1,81 +1,55 @@
--- [[ Configure Treesitter ]]
--- See `:help nvim-treesitter`
--- Defer Treesitter setup after first render to improve startup time of 'nvim {filename}'
 vim.defer_fn(function()
-  require('nvim-treesitter.configs').setup {
-    -- Add languages to be installed here that you want installed for treesitter
-    ensure_installed = { 'c',
-      'cpp',
-      'go',
-      'lua',
-      'python',
-      'rust',
-      'tsx',
-      'javascript',
-      'typescript',
-      'vimdoc',
-      'vim',
-      'bash',
-      'just'
-    },
+  local ensure_installed = { 'c', 'cpp', 'go', 'lua', 'python', 'rust', 'tsx', 'javascript', 'typescript', 'vimdoc', 'vim', 'bash', 'just' }
 
-    -- Autoinstall languages that are not installed. Defaults to false (but you can change for yourself!)
-    auto_install = false,
+  -- Install missing parsers
+  local installed = require('nvim-treesitter.config').get_installed('parsers')
+  local installed_set = {}
+  for _, lang in ipairs(installed) do
+    installed_set[lang] = true
+  end
+  local missing = {}
+  for _, lang in ipairs(ensure_installed) do
+    if not installed_set[lang] then
+      table.insert(missing, lang)
+    end
+  end
+  if #missing > 0 then
+    require('nvim-treesitter.install').install(missing)
+  end
 
-    highlight = { enable = true },
-    indent = { enable = true },
-    incremental_selection = {
-      enable = true,
-      keymaps = {
-        init_selection = '<c-space>',
-        node_incremental = '<c-space>',
-        scope_incremental = '<c-s>',
-        node_decremental = '<M-space>',
-      },
-    },
-    textobjects = {
-      select = {
-        enable = true,
-        lookahead = true, -- Automatically jump forward to textobj, similar to targets.vim
-        keymaps = {
-          -- You can use the capture groups defined in textobjects.scm
-          ['aa'] = '@parameter.outer',
-          ['ia'] = '@parameter.inner',
-          ['af'] = '@function.outer',
-          ['if'] = '@function.inner',
-          ['ac'] = '@class.outer',
-          ['ic'] = '@class.inner',
-        },
-      },
-      move = {
-        enable = true,
-        set_jumps = true, -- whether to set jumps in the jumplist
-        goto_next_start = {
-          [']m'] = '@function.outer',
-          [']]'] = '@class.outer',
-        },
-        goto_next_end = {
-          [']M'] = '@function.outer',
-          [']['] = '@class.outer',
-        },
-        goto_previous_start = {
-          ['[m'] = '@function.outer',
-          ['[['] = '@class.outer',
-        },
-        goto_previous_end = {
-          ['[M'] = '@function.outer',
-          ['[]'] = '@class.outer',
-        },
-      },
-      swap = {
-        enable = true,
-        swap_next = {
-          ['<leader>a'] = '@parameter.inner',
-        },
-        swap_previous = {
-          ['<leader>A'] = '@parameter.inner',
-        },
-      },
-    },
-  }
+  -- Textobjects
+  local ts_select = require('nvim-treesitter-textobjects.select')
+  local ts_move = require('nvim-treesitter-textobjects.move')
+  local ts_swap = require('nvim-treesitter-textobjects.swap')
+
+  require('nvim-treesitter-textobjects').setup({
+    select = { lookahead = true },
+    move = { set_jumps = true },
+  })
+
+  local function map(mode, lhs, rhs, desc)
+    vim.keymap.set(mode, lhs, rhs, { desc = desc })
+  end
+
+  -- Select textobjects
+  map({ 'x', 'o' }, 'aa', function() ts_select.select_textobject('@parameter.outer') end, 'outer parameter')
+  map({ 'x', 'o' }, 'ia', function() ts_select.select_textobject('@parameter.inner') end, 'inner parameter')
+  map({ 'x', 'o' }, 'af', function() ts_select.select_textobject('@function.outer') end, 'outer function')
+  map({ 'x', 'o' }, 'if', function() ts_select.select_textobject('@function.inner') end, 'inner function')
+  map({ 'x', 'o' }, 'ac', function() ts_select.select_textobject('@class.outer') end, 'outer class')
+  map({ 'x', 'o' }, 'ic', function() ts_select.select_textobject('@class.inner') end, 'inner class')
+
+  -- Move
+  map({ 'n', 'x', 'o' }, ']m', function() ts_move.goto_next_start('@function.outer') end, 'Next function start')
+  map({ 'n', 'x', 'o' }, ']]', function() ts_move.goto_next_start('@class.outer') end, 'Next class start')
+  map({ 'n', 'x', 'o' }, ']M', function() ts_move.goto_next_end('@function.outer') end, 'Next function end')
+  map({ 'n', 'x', 'o' }, '][', function() ts_move.goto_next_end('@class.outer') end, 'Next class end')
+  map({ 'n', 'x', 'o' }, '[m', function() ts_move.goto_previous_start('@function.outer') end, 'Prev function start')
+  map({ 'n', 'x', 'o' }, '[[', function() ts_move.goto_previous_start('@class.outer') end, 'Prev class start')
+  map({ 'n', 'x', 'o' }, '[M', function() ts_move.goto_previous_end('@function.outer') end, 'Prev function end')
+  map({ 'n', 'x', 'o' }, '[]', function() ts_move.goto_previous_end('@class.outer') end, 'Prev class end')
+
+  -- Swap
+  map('n', '<leader>a', function() ts_swap.swap_next('@parameter.inner') end, 'Swap next parameter')
+  map('n', '<leader>A', function() ts_swap.swap_previous('@parameter.inner') end, 'Swap prev parameter')
 end, 0)
