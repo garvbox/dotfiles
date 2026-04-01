@@ -12,11 +12,11 @@ if git_out=$(GIT_OPTIONAL_LOCKS=0 git -C "$dir" symbolic-ref --short HEAD 2>/dev
 fi
 
 model=$(echo "$input"       | jq -r '.model.display_name // ""')
-used=$(echo "$input"        | jq -r '.context_window.used_percentage // empty')
+used=$(echo "$input"        | jq -r '.context_window.used_percentage // empty | if . != "" then (. * 10 | round / 10) else . end')
 ctx_size=$(echo "$input"    | jq -r '.context_window.context_window_size // 0')
 lines_added=$(echo "$input" | jq -r '.cost.total_lines_added // 0')
 lines_removed=$(echo "$input" | jq -r '.cost.total_lines_removed // 0')
-rate_used=$(echo "$input"    | jq -r '.rate_limits.five_hour.used_percentage // empty')
+rate_used=$(echo "$input"    | jq -r '.rate_limits.five_hour.used_percentage // empty | if . != "" then (. * 10 | round / 10) else . end')
 rate_resets=$(echo "$input"  | jq -r '.rate_limits.five_hour.resets_at // empty')
 
 # carbonfox colours
