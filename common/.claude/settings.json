@@ -11,6 +11,8 @@
       "Bash(ls:*)",
       "Bash(jq:*)",
       "Bash(cat:*)",
+      "Bash(head:*)",
+      "Bash(echo:*)",
       "Bash(wc:*)",
       "Bash(git status:*)",
       "Bash(git diff:*)",
@@ -23,7 +25,8 @@
       "Bash(poetry:*)",
       "Bash(cargo clippy:*)",
       "Bash(cargo fmt:*)",
-      "Bash(cargo test:*)"
+      "Bash(cargo test:*)",
+      "Bash(npx prettier:*)"
     ],
     "deny": [
       "Bash(poetry publish:*)"
