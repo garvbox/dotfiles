@@ -16,8 +16,8 @@
 
 - Do not add any unnecessary function docstrings or "what" comments, instead use good function naming and overall
   module structure so that code is self-documenting whenever possible. Comments should **only** be used when
-  the behaviour is not obvious and needs some explanation.
-- NEVER add section divider comments, e.g. # --- Some Comment ---
+  the behaviour is not obvious and needs some explanation. If there are existing comments from unrelated changes you do not need to remove them.
+- **NEVER** add section divider comments, e.g. # --- Some Comment ---
 - Unit tests should be named with the following standard: `test_<function_tested>_when_<test_behaviour_when_predicate>`.
   For example, if testing a function `do_something`, and examining the behaviour when duplicates input, the test name
   would be `test_do_something_detects_duplicates_when_duplicates_input`
