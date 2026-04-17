@@ -32,6 +32,7 @@
       "Bash(poetry publish:*)"
     ]
   },
+  "disableAutoMode": "disable",
   "hooks": {
     "Stop": [
       {
