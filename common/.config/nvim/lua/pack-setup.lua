@@ -29,6 +29,7 @@ vim.pack.add {
 
   'https://github.com/MunifTanjim/nui.nvim',
   'https://github.com/rcarriga/nvim-notify',
+  'https://github.com/folke/snacks.nvim',
   'https://github.com/folke/noice.nvim',
   'https://github.com/lukas-reineke/indent-blankline.nvim',
   'https://github.com/folke/which-key.nvim',
@@ -51,6 +52,7 @@ vim.pack.add {
   'https://github.com/nvim-neotest/neotest-python',
   'https://github.com/rouge8/neotest-rust',
 
+  'https://github.com/kdheepak/lazygit.nvim',
   'https://github.com/lewis6991/gitsigns.nvim',
   'https://github.com/dstein64/vim-startuptime',
 }
@@ -174,6 +176,14 @@ vim.api.nvim_create_autocmd('UIEnter', {
     require('lazydev').setup {}
     require('luasnip').setup {}
     require('render-markdown').setup {}
+
+    require('snacks').setup { scratch = {} }
+    vim.keymap.set('n', '<leader>.', function()
+      Snacks.scratch()
+    end, { desc = 'Toggle Scratch Buffer' })
+    vim.keymap.set('n', '<leader>S', function()
+      Snacks.scratch.select()
+    end, { desc = 'Select Scratch Buffer' })
 
     vim.g.startuptime_tries = 10
   end,
