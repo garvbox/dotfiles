@@ -4,6 +4,7 @@
     "defaultMode": "plan",
     "allow": [
       "Skill(keelvar-core:*)",
+      "Read(~/projects/**)",
       "WebFetch(domain:docs.rs)",
       "WebFetch(domain:crates.io)",
       "Bash(grep:*)",
@@ -12,6 +13,7 @@
       "Bash(jq:*)",
       "Bash(cat:*)",
       "Bash(head:*)",
+      "Bash(tail:*)",
       "Bash(echo:*)",
       "Bash(wc:*)",
       "Bash(git status:*)",
@@ -22,7 +24,7 @@
       "Bash(git pull:*)",
       "Bash(git add:*)",
       "Bash(gh pr view:*)",
-      "Bash(poetry:*)",
+      "Bash(poetry run:*)",
       "Bash(cargo clippy:*)",
       "Bash(cargo fmt:*)",
       "Bash(cargo test:*)",
@@ -65,4 +67,7 @@
     "skill-creator@claude-plugins-official": true
   },
   "effortLevel": "high"
+  "disableAutoMode": "disable",
+  "theme": "auto",
+  "autoCompactEnabled": false
 }
