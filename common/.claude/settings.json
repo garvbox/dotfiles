@@ -1,10 +1,10 @@
 {
   "$schema": "https://json.schemastore.org/claude-code-settings.json",
   "permissions": {
-    "defaultMode": "plan",
     "allow": [
       "Skill(keelvar-core:*)",
       "Read(~/projects/**)",
+      "Read(~/.cargo/**)",
       "WebFetch(domain:docs.rs)",
       "WebFetch(domain:crates.io)",
       "Bash(grep:*)",
@@ -16,6 +16,7 @@
       "Bash(tail:*)",
       "Bash(echo:*)",
       "Bash(wc:*)",
+      "Bash(sed:*)",
       "Bash(git status:*)",
       "Bash(git diff:*)",
       "Bash(git log:*)",
@@ -25,14 +26,14 @@
       "Bash(git add:*)",
       "Bash(gh pr view:*)",
       "Bash(poetry run:*)",
-      "Bash(cargo clippy:*)",
-      "Bash(cargo fmt:*)",
-      "Bash(cargo test:*)",
+      "Bash(cargo:*)",
       "Bash(npx prettier:*)"
     ],
     "deny": [
-      "Bash(poetry publish:*)"
-    ]
+      "Bash(poetry publish:*)",
+      "Bash(cargo publish:*)"
+    ],
+    "defaultMode": "plan"
   },
   "disableAutoMode": "disable",
   "hooks": {
