@@ -64,7 +64,8 @@
   "enabledPlugins": {
     "rust-analyzer-lsp@claude-plugins-official": true,
     "pyright-lsp@claude-plugins-official": true,
-    "skill-creator@claude-plugins-official": true
+    "skill-creator@claude-plugins-official": true,
+    "code-simplifier@claude-plugins-official": true
   },
   "effortLevel": "high",
   "disableAutoMode": "disable",
