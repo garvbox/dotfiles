@@ -35,7 +35,6 @@
     ],
     "defaultMode": "plan"
   },
-  "disableAutoMode": "disable",
   "hooks": {
     "Stop": [
       {
@@ -67,7 +66,7 @@
     "pyright-lsp@claude-plugins-official": true,
     "skill-creator@claude-plugins-official": true
   },
-  "effortLevel": "high"
+  "effortLevel": "high",
   "disableAutoMode": "disable",
   "theme": "auto",
   "autoCompactEnabled": false
