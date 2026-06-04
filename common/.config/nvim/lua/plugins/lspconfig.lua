@@ -120,6 +120,7 @@ local servers = {
     },
   },
   rust_analyzer = {},
+  zls = {},
   yamlls = {},
   lua_ls = {
     settings = {
