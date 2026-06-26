@@ -140,3 +140,10 @@ toolName = "run_shell_command"
 commandPrefix = "kubectl logs"
 decision = "allow"
 priority = 100
+
+
+[[rule]]
+toolName = "run_shell_command"
+commandPrefix = "poetry run pytest"
+decision = "allow"
+priority = 100
