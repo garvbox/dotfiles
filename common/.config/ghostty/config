@@ -4,3 +4,5 @@ keybind = control+enter=unbind
 
 #font-family = Terminess Nerd Font
 font-size = 14
+
+config-file = ?~/.ghostty.local
