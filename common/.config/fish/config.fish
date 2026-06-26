@@ -5,5 +5,7 @@ if status is-interactive
     fish_add_path $HOME/bin
     fish_add_path $HOME/.local/bin
     fish_add_path /opt/homebrew/bin
+    # opencode
+    fish_add_path /home/garvin/.opencode/bin
 end
 
