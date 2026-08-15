@@ -6,7 +6,7 @@ function kv_update_all_service_repos
   for service in $(string split ',' $KV_SERVICES)
     echo "################# $service ######################"
     cd ~/projects/$service
-    command git checkout (git_main_branch) && command git fetch --all --prune && command git pull || break
+    command git checkout (git_main_branch) && command git fetch --all --prune && command git pull
   end
   cd $wd;
 end
