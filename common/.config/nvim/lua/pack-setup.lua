@@ -187,6 +187,13 @@ vim.api.nvim_create_autocmd('UIEnter', {
       Snacks.scratch.select()
     end, { desc = 'Select Scratch Buffer' })
 
+    vim.keymap.set('n', '<leader>gp', function()
+      Snacks.picker.gh_pr()
+    end, { desc = 'GitHub Pull Requests (open)' })
+    vim.keymap.set('n', '<leader>gP', function()
+      Snacks.picker.gh_pr { state = 'all' }
+    end, { desc = 'GitHub Pull Requests (all)' })
+
     require('obsidian').setup {
       picker = { name = 'telescope.nvim' },
       legacy_commands = false,
