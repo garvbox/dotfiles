@@ -42,6 +42,43 @@ keymap('n', '<leader>p', '"_dP', { desc = 'Paste without yanking' })
 -- Oil open
 keymap('n', '<leader>o', function() require('oil').toggle_float() end, { desc = '[O]il file browser' })
 
+-- Thread ledger
+local ledger = vim.fn.expand '~/projects/kv-workspace/THREADS.md'
+keymap('n', '<leader>np', function()
+  local file = vim.fn.expand '%:.'
+  local line = vim.api.nvim_win_get_cursor(0)[1]
+  local root = vim.fs.root(0, '.git')
+  local repo = root and vim.fs.basename(root) or vim.fs.basename(vim.uv.cwd())
+  local ctx = os.date '%Y-%m-%d %H:%M' .. ' · ' .. repo
+  if vim.b.gitsigns_head then
+    ctx = ctx .. '@' .. vim.b.gitsigns_head
+  end
+  if file ~= '' then
+    ctx = ctx .. ' · ' .. file .. ':' .. line
+  end
+  vim.ui.input({ prompt = 'park: ' }, function(thought)
+    if not thought or thought == '' then
+      return
+    end
+    local f = assert(io.open(ledger, 'a'))
+    f:write(('- [ ] %s — %s\n'):format(ctx, thought))
+    f:close()
+  end)
+end, { desc = 'Park thought in thread ledger' })
+keymap('n', '<leader>nl', function()
+  local buf = vim.fn.bufadd(ledger)
+  vim.bo[buf].buflisted = true
+  vim.api.nvim_open_win(buf, true, {
+    relative = 'editor',
+    width = math.floor(vim.o.columns * 0.8),
+    height = math.floor(vim.o.lines * 0.7),
+    row = math.floor(vim.o.lines * 0.12),
+    col = math.floor(vim.o.columns * 0.1),
+    border = 'rounded',
+  })
+  vim.cmd 'normal! G'
+end, { desc = 'Open thread ledger' })
+
 -- [[ Highlight on yank ]]
 -- See `:help vim.highlight.on_yank()`
 local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })

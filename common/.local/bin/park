@@ -1,0 +1,16 @@
+#!/bin/sh
+# Thread ledger capture; no args opens the ledger
+LEDGER="$HOME/projects/kv-workspace/THREADS.md"
+
+if [ $# -eq 0 ]; then
+    exec nvim + "$LEDGER"
+fi
+
+ctx=$(date "+%Y-%m-%d %H:%M")
+if git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
+    repo=$(basename "$(git rev-parse --show-toplevel)")
+    branch=$(git branch --show-current)
+    ctx="$ctx · $repo@$branch"
+fi
+
+printf -- '- [ ] %s — %s\n' "$ctx" "$*" >>"$LEDGER"
