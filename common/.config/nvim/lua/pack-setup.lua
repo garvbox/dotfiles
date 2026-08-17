@@ -36,8 +36,6 @@ vim.pack.add {
   'https://github.com/folke/todo-comments.nvim',
   'https://github.com/folke/trouble.nvim',
 
-  'https://github.com/obsidian-nvim/obsidian.nvim',
-
   'https://github.com/nvim-telescope/telescope.nvim',
   'https://github.com/nvim-telescope/telescope-fzf-native.nvim',
   'https://github.com/nvim-telescope/telescope-ui-select.nvim',
@@ -193,19 +191,6 @@ vim.api.nvim_create_autocmd('UIEnter', {
     vim.keymap.set('n', '<leader>gP', function()
       Snacks.picker.gh_pr { state = 'all' }
     end, { desc = 'GitHub Pull Requests (all)' })
-
-    require('obsidian').setup {
-      picker = { name = 'telescope.nvim' },
-      legacy_commands = false,
-      workspaces = {
-        {
-          name = 'buf-parent',
-          path = function()
-            return assert(vim.fs.dirname(vim.api.nvim_buf_get_name(0)))
-          end,
-        },
-      },
-    }
 
     vim.g.startuptime_tries = 10
   end,
