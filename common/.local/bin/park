@@ -1,9 +1,22 @@
 #!/bin/sh
-# Thread ledger capture; no args opens the ledger
+# Thread ledger capture; no args opens the ledger.
+# `park sweep` archives checked-off lines to THREADS-archive.md.
 LEDGER="$HOME/projects/kv-workspace/THREADS.md"
+ARCHIVE="$HOME/projects/kv-workspace/THREADS-archive.md"
 
 if [ $# -eq 0 ]; then
     exec nvim + "$LEDGER"
+fi
+
+if [ "$1" = "sweep" ]; then
+    n=$(grep -c '^- \[[xX]\]' "$LEDGER") || exit 0
+    [ -f "$ARCHIVE" ] || printf '# Thread Ledger Archive\n\n' >"$ARCHIVE"
+    grep '^- \[[xX]\]' "$LEDGER" >>"$ARCHIVE"
+    tmp=$(mktemp)
+    grep -v '^- \[[xX]\]' "$LEDGER" >"$tmp"
+    mv "$tmp" "$LEDGER"
+    echo "archived $n"
+    exit 0
 fi
 
 ctx=$(date "+%Y-%m-%d %H:%M")

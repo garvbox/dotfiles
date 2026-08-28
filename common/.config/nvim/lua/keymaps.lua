@@ -42,8 +42,59 @@ keymap('n', '<leader>p', '"_dP', { desc = 'Paste without yanking' })
 -- Oil open
 keymap('n', '<leader>o', function() require('oil').toggle_float() end, { desc = '[O]il file browser' })
 
--- Thread ledger
-local ledger = vim.fn.expand '~/projects/kv-workspace/THREADS.md'
+-- Notes: thread ledger, journal, investigations (kv-workspace)
+local vault = vim.fn.expand '~/projects/kv-workspace'
+local ledger = vault .. '/THREADS.md'
+
+-- Opens the monthly journal, ensures today's heading exists, cursor at the end
+local function open_journal_today()
+  local journal = ('%s/%s.md'):format(vault, os.date '%Y/%Y-%m')
+  vim.fn.mkdir(vim.fs.dirname(journal), 'p')
+  if vim.fn.expand '%:p' ~= journal then
+    vim.cmd.edit(journal)
+  end
+  local heading = os.date '## %Y-%m-%d'
+  if vim.fn.search('^' .. heading .. '$', 'nw') == 0 then
+    local last = vim.api.nvim_buf_line_count(0)
+    vim.api.nvim_buf_set_lines(0, last, last, false, { '', heading, '' })
+  end
+  vim.api.nvim_win_set_cursor(0, { vim.api.nvim_buf_line_count(0), 0 })
+end
+
+keymap('n', '<leader>nd', open_journal_today, { desc = 'Journal: today' })
+
+keymap('n', '<leader>nf', function()
+  require('telescope.builtin').live_grep { cwd = vault, prompt_title = 'Search notes' }
+end, { desc = 'Search notes vault' })
+
+keymap('n', '<leader>ni', function()
+  vim.ui.input({ prompt = 'investigation: ' }, function(slug)
+    if not slug or slug == '' then
+      return
+    end
+    slug = slug:lower():gsub('%s+', '-'):gsub('[^%w%-]', '')
+    local relpath = ('investigations/%s-%s.md'):format(os.date '%Y-%m-%d', slug)
+    open_journal_today()
+    local last = vim.api.nvim_buf_line_count(0)
+    vim.api.nvim_buf_set_lines(0, last, last, false, { ('%s → %s'):format(slug, relpath) })
+    vim.cmd.write()
+    vim.fn.mkdir(vault .. '/investigations', 'p')
+    vim.cmd.edit(vault .. '/' .. relpath)
+    if vim.api.nvim_buf_line_count(0) == 1 and vim.api.nvim_get_current_line() == '' then
+      vim.api.nvim_buf_set_lines(0, 0, 1, false, { '# ' .. slug, '' })
+    end
+  end)
+end, { desc = 'New investigation note' })
+
+vim.api.nvim_create_autocmd('BufWritePost', {
+  pattern = ledger,
+  group = vim.api.nvim_create_augroup('ThreadLedgerSweep', { clear = true }),
+  callback = function()
+    vim.system({ 'park', 'sweep' }, {}, vim.schedule_wrap(function()
+      vim.cmd 'silent! checktime'
+    end))
+  end,
+})
 keymap('n', '<leader>np', function()
   local file = vim.fn.expand '%:.'
   local line = vim.api.nvim_win_get_cursor(0)[1]
