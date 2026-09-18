@@ -1,4 +1,4 @@
-require('blink.cmp').setup({
+require('blink.cmp').setup {
   keymap = {
     preset = 'default',
   },
@@ -17,4 +17,4 @@ require('blink.cmp').setup({
   snippets = { preset = 'luasnip' },
   fuzzy = { implementation = 'lua' },
   signature = { enabled = true },
-})
+}
