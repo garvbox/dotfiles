@@ -48,7 +48,7 @@ local ledger = vault .. '/THREADS.md'
 
 -- Opens the monthly journal, ensures today's heading exists, cursor at the end
 local function open_journal_today()
-  local journal = ('%s/%s.md'):format(vault, os.date '%Y/%Y-%m')
+  local journal = ('%s/diary/%s.md'):format(vault, os.date '%Y-%m')
   vim.fn.mkdir(vim.fs.dirname(journal), 'p')
   if vim.fn.expand '%:p' ~= journal then
     vim.cmd.edit(journal)
