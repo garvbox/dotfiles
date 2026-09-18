@@ -40,7 +40,9 @@ keymap('v', '<leader>d', '"_d', { desc = 'Delete without yanking' })
 keymap('n', '<leader>p', '"_dP', { desc = 'Paste without yanking' })
 
 -- Oil open
-keymap('n', '<leader>o', function() require('oil').toggle_float() end, { desc = '[O]il file browser' })
+keymap('n', '<leader>o', function()
+  require('oil').toggle_float()
+end, { desc = '[O]il file browser' })
 
 -- Notes: thread ledger, journal, investigations (kv-workspace)
 local vault = vim.fn.expand '~/projects/kv-workspace'
@@ -90,9 +92,13 @@ vim.api.nvim_create_autocmd('BufWritePost', {
   pattern = ledger,
   group = vim.api.nvim_create_augroup('ThreadLedgerSweep', { clear = true }),
   callback = function()
-    vim.system({ 'park', 'sweep' }, {}, vim.schedule_wrap(function()
-      vim.cmd 'silent! checktime'
-    end))
+    vim.system(
+      { 'park', 'sweep' },
+      {},
+      vim.schedule_wrap(function()
+        vim.cmd 'silent! checktime'
+      end)
+    )
   end,
 })
 keymap('n', '<leader>np', function()
