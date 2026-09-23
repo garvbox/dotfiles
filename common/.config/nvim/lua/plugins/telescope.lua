@@ -1,6 +1,15 @@
 local actions = require 'telescope.actions'
 local open_with_trouble = require('trouble.sources.telescope').open
 
+local rg_filter_args = {
+  '--hidden',
+  '--glob',
+  '!{.git,.venv,node_modules,target}/',
+  '--iglob',
+  '!*.{xls,xlsx,pdf,png,jpg,jpeg,gif,zip,gz,parquet,pyc,so,dylib}',
+}
+local rg_grep_args = vim.list_extend({ '--glob', '!{tmp,.tmp}/', '--glob', '!.test_durations' }, rg_filter_args)
+
 require('telescope').setup {
   defaults = {
     mappings = {
@@ -20,12 +29,13 @@ require('telescope').setup {
   },
   pickers = {
     find_files = {
-      hidden = true,
-      file_ignore_patterns = { '.venv/', '.git/', 'node_modules/', 'target/' },
+      find_command = vim.list_extend({ 'rg', '--files', '--color', 'never' }, rg_filter_args),
     },
     live_grep = {
-      file_ignore_patterns = { 'node_modules/', '.git/', '.venv/', 'target/', '.test_durations', 'tmp/', '.tmp/' },
-      additional_args = { '--hidden' },
+      additional_args = rg_grep_args,
+    },
+    grep_string = {
+      additional_args = rg_grep_args,
     },
   },
 }
