@@ -1,0 +1,11 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "permissions": {
+    "deny": [
+      "Skill(keelvar-core:git-branch-naming)",
+      "Skill(keelvar-core:git-commit-format)",
+      "Skill(keelvar-core:git-pr-format)",
+      "Skill(keelvar-core:github-workflow-conventions)"
+    ]
+  }
+}
