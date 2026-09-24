@@ -1,0 +1,131 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "cleanupPeriodDays": 120,
+  "permissions": {
+    "allow": [
+      "Skill(keelvar-core:*)",
+      "Skill(find-docs)",
+      "Read(~/projects/**)",
+      "Read(~/.cargo/**)",
+      "WebFetch(domain:docs.rs)",
+      "WebFetch(domain:crates.io)",
+      "Bash(awk:*)",
+      "Bash(cargo:*)",
+      "Bash(cat:*)",
+      "Bash(docker logs:*)",
+      "Bash(echo:*)",
+      "Bash(find:*)",
+      "Bash(gh pr view:*)",
+      "Bash(gh pr diff:*)",
+      "Bash(gh run view:*)",
+      "Bash(git add:*)",
+      "Bash(git checkout:*)",
+      "Bash(git diff:*)",
+      "Bash(git log:*)",
+      "Bash(git pull:*)",
+      "Bash(git show:*)",
+      "Bash(git stash:*)",
+      "Bash(git status:*)",
+      "Bash(grep:*)",
+      "Bash(head:*)",
+      "Bash(jq:*)",
+      "Bash(ls:*)",
+      "Bash(npx prettier:*)",
+      "Bash(npx ctx7@latest:*)",
+      "Bash(poetry run:*)",
+      "Bash(sed:*)",
+      "Bash(tail:*)",
+      "Bash(wc:*)"
+    ],
+    "deny": [
+      "Bash(poetry publish:*)",
+      "Bash(cargo publish:*)",
+      "Bash(gh pr revert:*)",
+      "Bash(gh pr close:*)",
+      "Bash(gh pr merge:*)",
+      "Bash(brew services start:*)",
+      "Bash(brew services run:*)",
+      "Bash(brew services restart:*)",
+      "Bash(pg_ctl:*)",
+      "Bash(postgres:*)",
+      "Bash(postmaster:*)",
+      "Bash(initdb:*)",
+      "Bash(launchctl load:*)",
+      "Bash(launchctl start:*)",
+      "Bash(docker start:*)",
+      "Bash(docker restart:*)",
+      "Bash(docker run:*)"
+    ],
+    "ask": [
+      "Bash(git push:*)",
+      "Bash(gh pr create:*)",
+      "Bash(gh pr edit:*)",
+      "Bash(gh pr comment:*)"
+    ],
+    "defaultMode": "plan"
+  },
+  "model": "opus[1m]",
+  "skillOverrides": {
+    "backlog": "off",
+    "rust": "off"
+  },
+  "hooks": {
+    "PermissionRequest": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "[ -n \"$TMUX_PANE\" ] && printf '\\a' > \"$(tmux display-message -p -t \"$TMUX_PANE\" '#{pane_tty}')\" 2>/dev/null; exit 0"
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 ~/.claude/hooks/check_comment_density.py"
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 ~/.claude/hooks/block_postgres_start.py"
+          }
+        ]
+      }
+    ]
+  },
+  "statusLine": {
+    "type": "command",
+    "command": "sh ~/.claude/statusline-command.sh"
+  },
+  "enabledPlugins": {
+    "rust-analyzer-lsp@claude-plugins-official": false,
+    "pyright-lsp@claude-plugins-official": true,
+    "skill-creator@claude-plugins-official": false,
+    "code-simplifier@claude-plugins-official": false,
+    "superpowers@claude-plugins-official": false,
+    "mattpocock-skills@claude-plugins-official": true
+  },
+  "outputStyle": "Blunt",
+  "effortLevel": "medium",
+  "modelSettings": {
+    "claude-sonnet-5": {
+      "effortLevel": "high"
+    }
+  },
+  "showClearContextOnPlanAccept": true,
+  "tui": "fullscreen",
+  "skipWorkflowUsageWarning": true,
+  "theme": "auto",
+  "autoCompactEnabled": false,
+  "skipAutoPermissionPrompt": true
+}
