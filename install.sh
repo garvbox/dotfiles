@@ -55,7 +55,7 @@ run_stow_package() {
 		exit -1
 	else
 		echo "Running Stow package: $1"
-		stow -Sv -t $HOME $1
+		stow --no-folding -Sv -t $HOME $1
 	fi
 }
 
