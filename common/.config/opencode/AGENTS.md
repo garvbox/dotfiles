@@ -2,7 +2,7 @@
 
 ## General Instructions
 
-- When fixing existing issues, practise test-driven development. Plan to write a failing test first to confirm the behaviour is as suspected, then fix the issue and re-run the test. After fixing the issue propose refactoring to tidy up the affected area if it is needed.
+- When fixing specific identified issues (either from direct instructions or issues you find), practise test-driven development. Write a failing test first to confirm the behaviour is as suspected, then fix the issue and re-run the test. After fixing the issue propose refactoring to tidy up the affected area as standard.
 
 ## Version Control
 
