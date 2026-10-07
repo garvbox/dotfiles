@@ -75,10 +75,11 @@ keymap('n', '<leader>ni', function()
       return
     end
     slug = slug:lower():gsub('%s+', '-'):gsub('[^%w%-]', '')
-    local relpath = ('investigations/%s-%s.md'):format(os.date '%Y-%m-%d', slug)
+    local name = ('%s-%s'):format(os.date '%Y-%m-%d', slug)
+    local relpath = ('investigations/%s.md'):format(name)
     open_journal_today()
     local last = vim.api.nvim_buf_line_count(0)
-    vim.api.nvim_buf_set_lines(0, last, last, false, { ('%s → %s'):format(slug, relpath) })
+    vim.api.nvim_buf_set_lines(0, last, last, false, { ('[[%s]]'):format(name) })
     vim.cmd.write()
     vim.fn.mkdir(vault .. '/investigations', 'p')
     vim.cmd.edit(vault .. '/' .. relpath)
