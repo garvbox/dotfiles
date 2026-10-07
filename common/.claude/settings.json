@@ -9,6 +9,7 @@
       "Read(~/.cargo/**)",
       "WebFetch(domain:docs.rs)",
       "WebFetch(domain:crates.io)",
+      "Bash(awk:*)",
       "Bash(cargo:*)",
       "Bash(docker logs:*)",
       "Bash(echo:*)",
@@ -25,11 +26,13 @@
       "Bash(git stash:*)",
       "Bash(git status:*)",
       "Bash(grep:*)",
+      "Bash(head:*)",
       "Bash(jq:*)",
       "Bash(ls:*)",
       "Bash(npx prettier:*)",
       "Bash(npx ctx7@latest:*)",
       "Bash(poetry run:*)",
+      "Bash(tail:*)",
       "Bash(wc:*)"
     ],
     "deny": [
@@ -101,6 +104,9 @@
   "statusLine": {
     "type": "command",
     "command": "sh ~/.claude/statusline-command.sh"
+  },
+  "env": {
+    "CLAUDE_CODE_THRIFTY_SONIC": "0"
   },
   "enabledPlugins": {
     "rust-analyzer-lsp@claude-plugins-official": false,
