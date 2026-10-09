@@ -85,12 +85,17 @@ vim.api.nvim_create_autocmd('UIEnter', {
     require 'plugins.blink'
     require 'plugins.neotest'
 
+    local keymap = require 'util.keymap'
+
     require('which-key').setup()
     require('which-key').add {
       { '<leader>c', group = '[C]ode' },
       { '<leader>d', group = '[D]ocument' },
+      { '<leader>f', group = '[F]ind' },
+      { '<leader>g', group = '[G]it' },
       { '<leader>r', group = '[R]ename' },
       { '<leader>s', group = '[S]earch' },
+      { '<leader>u', group = '[U]I' },
       { '<leader>w', group = '[W]orkspace' },
       { '<leader>t', group = '[T]oggle' },
       { '<leader>h', group = 'Git [H]unk', mode = { 'n', 'v' } },
@@ -104,29 +109,23 @@ vim.api.nvim_create_autocmd('UIEnter', {
     }
 
     require('flash').setup {}
-    vim.keymap.set({ 'n', 'x', 'o' }, 's', function()
-      require('flash').jump()
-    end, { desc = 'Flash' })
-    vim.keymap.set({ 'n', 'x', 'o' }, 'S', function()
-      require('flash').treesitter()
-    end, { desc = 'Flash Treesitter' })
-    vim.keymap.set('o', 'r', function()
-      require('flash').remote()
-    end, { desc = 'Remote Flash' })
-    vim.keymap.set({ 'o', 'x' }, 'R', function()
-      require('flash').treesitter_search()
-    end, { desc = 'Treesitter Search' })
-    vim.keymap.set('c', '<c-s>', function()
-      require('flash').toggle()
-    end, { desc = 'Toggle Flash Search' })
+    keymap.set {
+      { 's', function() require('flash').jump() end, mode = { 'n', 'x', 'o' }, desc = 'Flash' },
+      { 'S', function() require('flash').treesitter() end, mode = { 'n', 'x', 'o' }, desc = 'Flash Treesitter' },
+      { 'r', function() require('flash').remote() end, mode = 'o', desc = 'Remote Flash' },
+      { 'R', function() require('flash').treesitter_search() end, mode = { 'o', 'x' }, desc = 'Treesitter Search' },
+      { '<c-s>', function() require('flash').toggle() end, mode = 'c', desc = 'Toggle Flash Search' },
+    }
 
     require('trouble').setup {}
-    vim.keymap.set('n', '<leader>xx', '<cmd>Trouble diagnostics toggle<cr>', { desc = 'Diagnostics (Trouble)' })
-    vim.keymap.set('n', '<leader>xX', '<cmd>Trouble diagnostics toggle filter.buf=0<cr>', { desc = 'Buffer Diagnostics (Trouble)' })
-    vim.keymap.set('n', '<leader>cs', '<cmd>Trouble symbols toggle focus=false<cr>', { desc = 'Symbols (Trouble)' })
-    vim.keymap.set('n', '<leader>cl', '<cmd>Trouble lsp toggle focus=false win.position=right<cr>', { desc = 'LSP Definitions / references / ... (Trouble)' })
-    vim.keymap.set('n', '<leader>xL', '<cmd>Trouble loclist toggle<cr>', { desc = 'Location List (Trouble)' })
-    vim.keymap.set('n', '<leader>xQ', '<cmd>Trouble qflist toggle<cr>', { desc = 'Quickfix List (Trouble)' })
+    keymap.set {
+      { '<leader>xx', '<cmd>Trouble diagnostics toggle<cr>', desc = 'Diagnostics (Trouble)' },
+      { '<leader>xX', '<cmd>Trouble diagnostics toggle filter.buf=0<cr>', desc = 'Buffer Diagnostics (Trouble)' },
+      { '<leader>cs', '<cmd>Trouble symbols toggle focus=false<cr>', desc = 'Symbols (Trouble)' },
+      { '<leader>cl', '<cmd>Trouble lsp toggle focus=false win.position=right<cr>', desc = 'LSP Definitions / references / ... (Trouble)' },
+      { '<leader>xL', '<cmd>Trouble loclist toggle<cr>', desc = 'Location List (Trouble)' },
+      { '<leader>xQ', '<cmd>Trouble qflist toggle<cr>', desc = 'Quickfix List (Trouble)' },
+    }
 
     require('conform').setup {
       format_on_save = {
@@ -141,26 +140,18 @@ vim.api.nvim_create_autocmd('UIEnter', {
     require('oil').setup {
       view_options = {
         show_hidden = true,
-        is_always_hidden = function(name, bufnr)
-          return vim.startswith(name, '__pycache__')
-        end,
+        is_always_hidden = function(name, bufnr) return vim.startswith(name, '__pycache__') end,
       },
     }
 
     require('noice').setup {}
     require('persistence').setup {}
-    vim.keymap.set('n', '<leader>qs', function()
-      require('persistence').load()
-    end, { desc = 'Restore session' })
-    vim.keymap.set('n', '<leader>qS', function()
-      require('persistence').select()
-    end, { desc = 'Select session' })
-    vim.keymap.set('n', '<leader>ql', function()
-      require('persistence').load { last = true }
-    end, { desc = 'Restore last session' })
-    vim.keymap.set('n', '<leader>qd', function()
-      require('persistence').stop()
-    end, { desc = 'Stop persistence' })
+    keymap.set {
+      { '<leader>qs', function() require('persistence').load() end, desc = 'Restore session' },
+      { '<leader>qS', function() require('persistence').select() end, desc = 'Select session' },
+      { '<leader>ql', function() require('persistence').load { last = true } end, desc = 'Restore last session' },
+      { '<leader>qd', function() require('persistence').stop() end, desc = 'Stop persistence' },
+    }
     require('nvim-autopairs').setup {}
     require('ibl').setup {}
     require('fidget').setup {}
