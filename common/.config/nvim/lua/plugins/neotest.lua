@@ -17,29 +17,16 @@ nt.setup {
   },
 }
 
-local keymap = vim.keymap.set
-keymap('n', '<leader>t', '', { desc = '+test' })
-keymap('n', '<leader>tt', function()
-  nt.run.run(vim.fn.expand '%')
-end, { desc = 'Run File' })
-keymap('n', '<leader>tT', function()
-  nt.run.run(vim.uv.cwd())
-end, { desc = 'Run All Test Files' })
-keymap('n', '<leader>tr', function()
-  nt.run.run()
-end, { desc = 'Run Nearest' })
-keymap('n', '<leader>tl', function()
-  nt.run.run_last()
-end, { desc = 'Run Last' })
-keymap('n', '<leader>ts', function()
-  nt.summary.toggle()
-end, { desc = 'Toggle Summary' })
-keymap('n', '<leader>tO', function()
-  nt.output_panel.toggle()
-end, { desc = 'Toggle Output Panel' })
-keymap('n', '<leader>tS', function()
-  nt.run.stop()
-end, { desc = 'Stop' })
-keymap('n', '<leader>tw', function()
-  nt.watch.toggle(vim.fn.expand '%')
-end, { desc = 'Toggle Watch' })
+local keymap = require 'util.keymap'
+
+keymap.set {
+  { '<leader>t', '', desc = '+test' },
+  { '<leader>tt', function() nt.run.run(vim.fn.expand '%') end, desc = 'Run File' },
+  { '<leader>tT', function() nt.run.run(vim.uv.cwd()) end, desc = 'Run All Test Files' },
+  { '<leader>tr', function() nt.run.run() end, desc = 'Run Nearest' },
+  { '<leader>tl', function() nt.run.run_last() end, desc = 'Run Last' },
+  { '<leader>ts', function() nt.summary.toggle() end, desc = 'Toggle Summary' },
+  { '<leader>tO', function() nt.output_panel.toggle() end, desc = 'Toggle Output Panel' },
+  { '<leader>tS', function() nt.run.stop() end, desc = 'Stop' },
+  { '<leader>tw', function() nt.watch.toggle(vim.fn.expand '%') end, desc = 'Toggle Watch' },
+}
