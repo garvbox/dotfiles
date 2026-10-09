@@ -19,6 +19,7 @@ nt.setup {
 
 local keymap = require 'util.keymap'
 
+-- stylua: ignore
 keymap.set {
   { '<leader>t', '', desc = '+test' },
   { '<leader>tt', function() nt.run.run(vim.fn.expand '%') end, desc = 'Run File' },

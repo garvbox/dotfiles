@@ -66,7 +66,6 @@ end
 keymap('n', '<leader>nd', open_journal_today, { desc = 'Journal: today' })
 
 keymap('n', '<leader>nf', function()
-  -- Search Notes
   Snacks.picker.grep { cwd = vault, title = 'Search notes' }
 end, { desc = 'Search notes vault' })
 

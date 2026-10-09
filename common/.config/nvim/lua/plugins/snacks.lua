@@ -1,6 +1,7 @@
 require('snacks').setup { scratch = {}, picker = {}, explorer = {} }
 local keymap = require 'util.keymap'
 
+-- stylua: ignore
 keymap.set {
   -- Scratch
   { '<leader>.', function() Snacks.scratch() end, desc = 'Toggle Scratch Buffer' },

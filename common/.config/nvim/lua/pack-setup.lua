@@ -109,6 +109,7 @@ vim.api.nvim_create_autocmd('UIEnter', {
     }
 
     require('flash').setup {}
+    -- stylua: ignore
     keymap.set {
       { 's', function() require('flash').jump() end, mode = { 'n', 'x', 'o' }, desc = 'Flash' },
       { 'S', function() require('flash').treesitter() end, mode = { 'n', 'x', 'o' }, desc = 'Flash Treesitter' },
@@ -118,6 +119,7 @@ vim.api.nvim_create_autocmd('UIEnter', {
     }
 
     require('trouble').setup {}
+    -- stylua: ignore
     keymap.set {
       { '<leader>xx', '<cmd>Trouble diagnostics toggle<cr>', desc = 'Diagnostics (Trouble)' },
       { '<leader>xX', '<cmd>Trouble diagnostics toggle filter.buf=0<cr>', desc = 'Buffer Diagnostics (Trouble)' },
@@ -140,12 +142,15 @@ vim.api.nvim_create_autocmd('UIEnter', {
     require('oil').setup {
       view_options = {
         show_hidden = true,
-        is_always_hidden = function(name, bufnr) return vim.startswith(name, '__pycache__') end,
+        is_always_hidden = function(name, bufnr)
+          return vim.startswith(name, '__pycache__')
+        end,
       },
     }
 
     require('noice').setup {}
     require('persistence').setup {}
+    -- stylua: ignore
     keymap.set {
       { '<leader>qs', function() require('persistence').load() end, desc = 'Restore session' },
       { '<leader>qS', function() require('persistence').select() end, desc = 'Select session' },
