@@ -36,10 +36,6 @@ vim.pack.add {
   'https://github.com/folke/todo-comments.nvim',
   'https://github.com/folke/trouble.nvim',
 
-  'https://github.com/nvim-telescope/telescope.nvim',
-  'https://github.com/nvim-telescope/telescope-fzf-native.nvim',
-  'https://github.com/nvim-telescope/telescope-ui-select.nvim',
-
   'https://github.com/windwp/nvim-autopairs',
   'https://github.com/stevearc/conform.nvim',
   'https://github.com/folke/flash.nvim',
@@ -63,11 +59,6 @@ vim.api.nvim_create_autocmd('User', {
     local name = ev.data and ev.data.name
     if name == 'nvim-treesitter' then
       vim.cmd 'TSUpdate'
-    elseif name == 'telescope-fzf-native.nvim' then
-      local dir = vim.fs.joinpath(vim.fn.stdpath 'data', 'site', 'pack', 'core', 'opt', 'telescope-fzf-native.nvim')
-      if vim.fn.executable 'make' == 1 and vim.fn.isdirectory(dir) == 1 then
-        vim.fn.system { 'make', '-C', dir }
-      end
     elseif name == 'LuaSnip' then
       local dir = vim.fs.joinpath(vim.fn.stdpath 'data', 'site', 'pack', 'core', 'opt', 'LuaSnip')
       if vim.fn.executable 'make' == 1 and vim.fn.isdirectory(dir) == 1 then
@@ -89,7 +80,7 @@ vim.api.nvim_create_autocmd('UIEnter', {
   once = true,
   callback = function()
     require 'plugins.lspconfig'
-    require 'plugins.telescope'
+    require 'plugins.snacks'
     require 'plugins.gitsigns'
     require 'plugins.blink'
     require 'plugins.neotest'
@@ -176,21 +167,6 @@ vim.api.nvim_create_autocmd('UIEnter', {
     require('lazydev').setup {}
     require('luasnip').setup {}
     require('render-markdown').setup {}
-
-    require('snacks').setup { scratch = {} }
-    vim.keymap.set('n', '<leader>.', function()
-      Snacks.scratch()
-    end, { desc = 'Toggle Scratch Buffer' })
-    vim.keymap.set('n', '<leader>S', function()
-      Snacks.scratch.select()
-    end, { desc = 'Select Scratch Buffer' })
-
-    vim.keymap.set('n', '<leader>gp', function()
-      Snacks.picker.gh_pr()
-    end, { desc = 'GitHub Pull Requests (open)' })
-    vim.keymap.set('n', '<leader>gP', function()
-      Snacks.picker.gh_pr { state = 'all' }
-    end, { desc = 'GitHub Pull Requests (all)' })
 
     vim.g.startuptime_tries = 10
   end,
