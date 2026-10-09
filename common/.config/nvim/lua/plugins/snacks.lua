@@ -1,4 +1,21 @@
-require('snacks').setup { scratch = {}, picker = {}, explorer = {} }
+local files_exclude = {
+  '{.git,.venv,node_modules,target}/',
+  '*.{xls,xlsx,pdf,png,jpg,jpeg,gif,zip,gz,parquet,pyc,so,dylib}',
+}
+local grep_exclude = vim.list_extend({ '{tmp,.tmp}/', '.test_durations' }, files_exclude)
+
+require('snacks').setup {
+  scratch = {},
+  explorer = {},
+  picker = {
+    sources = {
+      files = { hidden = true, exclude = files_exclude },
+      grep = { hidden = true, exclude = grep_exclude },
+      grep_word = { hidden = true, exclude = grep_exclude },
+    },
+  },
+}
+
 local keymap = require 'util.keymap'
 
 -- stylua: ignore
