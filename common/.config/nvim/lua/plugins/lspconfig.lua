@@ -119,7 +119,15 @@ local servers = {
       },
     },
   },
-  rust_analyzer = {},
+  rust_analyzer = {
+    settings = {
+      ['rust-analyzer'] = {
+        cargo = {
+          features = 'all',
+        },
+      },
+    },
+  },
   zls = {},
   yamlls = {},
   lua_ls = {
