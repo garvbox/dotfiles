@@ -7,6 +7,27 @@ local grep_exclude = vim.list_extend({ '{tmp,.tmp}/', '.test_durations' }, files
 require('snacks').setup {
   scratch = {},
   explorer = {},
+  indent = {},
+  notifier = {},
+  lazygit = {},
+  gitbrowse = {},
+  profiler = {},
+  bufdelete = {},
+  terminal = {},
+  rename = {},
+  words = {},
+  bigfile = {},
+  dashboard = {
+    sections = {
+      { section = 'header' },
+      { section = 'keys', gap = 1, padding = 1 },
+      { section = 'recent_files', limit = 5 },
+    },
+  },
+  zen = {},
+  dim = {},
+  scroll = {},
+  statuscolumn = {},
   picker = {
     sources = {
       files = { hidden = true, exclude = files_exclude },
@@ -45,12 +66,18 @@ keymap.set {
   { '<leader>gS', function() Snacks.picker.git_stash() end, desc = '[G]it [S]tash' },
   { '<leader>gd', function() Snacks.picker.git_diff() end, desc = '[G]it [D]iff (Hunks)' },
   { '<leader>gf', function() Snacks.picker.git_log_file() end, desc = '[G]it Log [F]ile' },
+  { '<leader>gg', function() Snacks.lazygit() end, desc = '[G]it [G]it (Lazygit)' },
+  { '<leader>gB', function() Snacks.gitbrowse() end, desc = '[G]it [B]rowse', mode = { 'n', 'x' } },
 
   -- GitHub
   { '<leader>gp', function() Snacks.picker.gh_pr() end, desc = '[G]itHub [P]ull Requests (open)' },
   { '<leader>gP', function() Snacks.picker.gh_pr { state = 'all' } end, desc = '[G]itHub [P]ull Requests (all)' },
   { '<leader>gi', function() Snacks.picker.gh_issue() end, desc = '[G]itHub [I]ssues (open)' },
   { '<leader>gI', function() Snacks.picker.gh_issue { state = 'all' } end, desc = '[G]itHub [I]ssues (all)' },
+
+  -- Buffer
+  { '<leader>bd', function() Snacks.bufdelete() end, desc = '[B]uffer [D]elete' },
+  { '<leader>bo', function() Snacks.bufdelete.other() end, desc = '[B]uffer delete [O]thers' },
 
   -- Search
   { '<leader>sh', function() Snacks.picker.help() end, desc = '[S]earch [H]elp' },
@@ -93,7 +120,13 @@ keymap.set {
   { 'gai', function() Snacks.picker.lsp_incoming_calls() end, desc = 'C[a]lls [I]ncoming' },
   { 'gao', function() Snacks.picker.lsp_outgoing_calls() end, desc = 'C[a]lls [O]utgoing' },
   { '<leader>ds', function() Snacks.picker.lsp_symbols() end, desc = '[D]ocument [S]ymbols' },
+  { '<leader>cR', function() Snacks.rename.rename_file() end, desc = '[C]ode [R]ename File' },
+
+  -- Terminal
+  { '<c-/>', function() Snacks.terminal() end, desc = 'Toggle Terminal' },
 
   -- UI
   { '<leader>uC', function() Snacks.picker.colorschemes() end, desc = '[U]I [C]olorschemes' },
+  { '<leader>uz', function() Snacks.zen() end, desc = '[U]I [Z]en' },
+  { '<leader>up', function() Snacks.profiler.toggle() end, desc = '[U]I [P]rofiler' },
 }

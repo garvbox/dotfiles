@@ -10,7 +10,6 @@ vim.pack.add {
   'https://github.com/echasnovski/mini.nvim',
 
   'https://github.com/tpope/vim-fugitive',
-  'https://github.com/tpope/vim-rhubarb',
   'https://github.com/tpope/vim-sleuth',
   'https://github.com/b0o/SchemaStore.nvim',
 
@@ -20,7 +19,6 @@ vim.pack.add {
   'https://github.com/mason-org/mason.nvim',
   'https://github.com/mason-org/mason-lspconfig.nvim',
   'https://github.com/WhoIsSethDaniel/mason-tool-installer.nvim',
-  'https://github.com/j-hui/fidget.nvim',
   'https://github.com/neovim/nvim-lspconfig',
 
   { src = 'https://github.com/L3MON4D3/LuaSnip', version = 'v2.4.1' },
@@ -28,10 +26,8 @@ vim.pack.add {
   { src = 'https://github.com/saghen/blink.cmp', version = 'v1.10.1' },
 
   'https://github.com/MunifTanjim/nui.nvim',
-  'https://github.com/rcarriga/nvim-notify',
   'https://github.com/folke/snacks.nvim',
   'https://github.com/folke/noice.nvim',
-  'https://github.com/lukas-reineke/indent-blankline.nvim',
   'https://github.com/folke/which-key.nvim',
   'https://github.com/folke/todo-comments.nvim',
   'https://github.com/folke/trouble.nvim',
@@ -48,9 +44,7 @@ vim.pack.add {
   'https://github.com/nvim-neotest/neotest-python',
   'https://github.com/rouge8/neotest-rust',
 
-  'https://github.com/kdheepak/lazygit.nvim',
   'https://github.com/lewis6991/gitsigns.nvim',
-  'https://github.com/dstein64/vim-startuptime',
 }
 
 vim.api.nvim_create_autocmd('User', {
@@ -89,6 +83,7 @@ vim.api.nvim_create_autocmd('UIEnter', {
 
     require('which-key').setup()
     require('which-key').add {
+      { '<leader>b', group = '[B]uffer' },
       { '<leader>c', group = '[C]ode' },
       { '<leader>d', group = '[D]ocument' },
       { '<leader>f', group = '[F]ind' },
@@ -158,12 +153,8 @@ vim.api.nvim_create_autocmd('UIEnter', {
       { '<leader>qd', function() require('persistence').stop() end, desc = 'Stop persistence' },
     }
     require('nvim-autopairs').setup {}
-    require('ibl').setup {}
-    require('fidget').setup {}
     require('lazydev').setup {}
     require('luasnip').setup {}
     require('render-markdown').setup {}
-
-    vim.g.startuptime_tries = 10
   end,
 })
