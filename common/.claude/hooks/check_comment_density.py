@@ -6,7 +6,7 @@ import re
 import sys
 
 NON_POLICY_COMMENT = re.compile(r"^#!|^#\s*(noqa|type:\s*ignore|pragma|ruff:|fmt:)")
-MAX_COMMENT_LINES = 3
+MAX_COMMENT_LINES = 1
 
 
 def comment_lines(text):
