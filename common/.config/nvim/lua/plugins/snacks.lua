@@ -4,6 +4,8 @@ local files_exclude = {
 }
 local grep_exclude = vim.list_extend({ '{tmp,.tmp}/', '.test_durations' }, files_exclude)
 
+local startup_ms
+
 require('snacks').setup {
   scratch = {},
   explorer = {},
@@ -23,6 +25,19 @@ require('snacks').setup {
       { icon = ' ', title = 'Keymaps', section = 'keys', indent = 2, padding = 1 },
       { icon = ' ', title = 'Recent Files', section = 'recent_files', cwd = true, indent = 2, padding = 1 },
       { icon = ' ', title = 'Projects', section = 'projects', indent = 2, padding = 1 },
+      -- The built-in `startup` section is hard-wired to lazy.nvim; report vim.pack stats instead.
+      function()
+        startup_ms = startup_ms or (vim.uv.hrtime() - vim.g.startup_time) / 1e6
+        return {
+          align = 'center',
+          text = {
+            { '⚡ Neovim loaded ', hl = 'footer' },
+            { tostring(#vim.pack.get()), hl = 'special' },
+            { ' plugins in ', hl = 'footer' },
+            { string.format('%.2fms', startup_ms), hl = 'special' },
+          },
+        }
+      end,
     },
   },
   zen = {},
