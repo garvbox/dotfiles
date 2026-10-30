@@ -45,6 +45,19 @@ keymap('n', '<leader>O', function()
   vim.system { 'open', '-a', 'Google Chrome', vim.fn.expand '%:p' }
 end, { desc = '[O]pen file in Chrome' })
 
+-- Copy current buffer path to the system clipboard
+keymap('n', '<leader>yp', function()
+  local path = vim.fn.expand '%:p'
+  vim.fn.setreg('+', path)
+  vim.notify('Copied: ' .. path)
+end, { desc = '[Y]ank absolute [P]ath' })
+
+keymap('n', '<leader>yr', function()
+  local path = vim.fn.fnamemodify(vim.fn.expand '%:p', ':~:.')
+  vim.fn.setreg('+', path)
+  vim.notify('Copied: ' .. path)
+end, { desc = '[Y]ank [R]elative path' })
+
 -- Notes: thread ledger, journal, investigations (kv-workspace)
 local vault = vim.fn.expand '~/projects/kv-workspace'
 local ledger = vault .. '/THREADS.md'
