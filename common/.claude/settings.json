@@ -33,7 +33,8 @@
       "Bash(npx ctx7@latest:*)",
       "Bash(poetry run:*)",
       "Bash(tail:*)",
-      "Bash(wc:*)"
+      "Bash(wc:*)",
+      "mcp__keelvar-grafana__*"
     ],
     "deny": [
       "Bash(poetry publish:*)",
