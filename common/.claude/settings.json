@@ -60,9 +60,9 @@
       "Bash(gh pr edit:*)",
       "Bash(gh pr comment:*)"
     ],
-    "defaultMode": "plan"
+    "defaultMode": "auto"
   },
-  "model": "opus[1m]",
+  "model": "opus",
   "skillOverrides": {
     "backlog": "off",
     "rust": "off"
