@@ -40,6 +40,11 @@ keymap('n', '<leader>o', function()
   require('oil').toggle_float()
 end, { desc = '[O]il file browser' })
 
+-- Open current file in Chrome
+keymap('n', '<leader>O', function()
+  vim.system { 'open', '-a', 'Google Chrome', vim.fn.expand '%:p' }
+end, { desc = '[O]pen file in Chrome' })
+
 -- Notes: thread ledger, journal, investigations (kv-workspace)
 local vault = vim.fn.expand '~/projects/kv-workspace'
 local ledger = vault .. '/THREADS.md'
