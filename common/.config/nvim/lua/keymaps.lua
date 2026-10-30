@@ -12,10 +12,6 @@ keymap('n', '<Down>', '<nop>', { noremap = true, silent = true, desc = 'Disable 
 -- File Switcher
 keymap('n', '<leader><leader>', '<C-^>', { desc = 'Switch between last two files' })
 
--- Reset cursor to center when scrolling
-keymap('n', '<C-d>', '<C-d>zz', { noremap = true, silent = true, desc = 'Scroll down with cursor reset' })
-keymap('n', '<C-u>', '<C-u>zz', { noremap = true, silent = true, desc = 'Scroll up with cursor reset' })
-
 -- Remap for dealing with word wrap
 keymap('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 keymap('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
