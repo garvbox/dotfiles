@@ -120,7 +120,7 @@
   "outputStyle": "Blunt",
   "effortLevel": "medium",
   "modelSettings": {
-    "claude-sonnet-5": {
+    "claude-mythos-5-1": {
       "effortLevel": "high"
     }
   },
