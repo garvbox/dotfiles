@@ -80,8 +80,18 @@ end
 keymap('n', '<leader>nd', open_journal_today, { desc = 'Journal: today' })
 
 keymap('n', '<leader>nf', function()
-  Snacks.picker.grep { cwd = vault, title = 'Search notes' }
+  Snacks.picker.grep { cwd = vault, title = 'Search notes', hidden = false, glob = '*.md' }
 end, { desc = 'Search notes vault' })
+
+-- The vault is not a git repo, so hidden caches (.mypy_cache, .obsidian, ...) are not
+-- gitignored; skip hidden files and limit to markdown notes.
+keymap('n', '<leader>nF', function()
+  Snacks.picker.files { cwd = vault, title = 'Notes files', hidden = false, ft = 'md' }
+end, { desc = 'Find notes by filename' })
+
+keymap('n', '<leader>nI', function()
+  Snacks.picker.grep { cwd = vault .. '/investigations', title = 'Search investigations', hidden = false, glob = '*.md' }
+end, { desc = 'Search investigations' })
 
 keymap('n', '<leader>ni', function()
   vim.ui.input({ prompt = 'investigation: ' }, function(slug)
