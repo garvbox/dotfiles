@@ -72,16 +72,6 @@
     "rust": "off"
   },
   "hooks": {
-    "PermissionRequest": [
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "[ -n \"$TMUX_PANE\" ] && printf '\\a' > \"$(tmux display-message -p -t \"$TMUX_PANE\" '#{pane_tty}')\" 2>/dev/null; exit 0"
-          }
-        ]
-      }
-    ],
     "PostToolUse": [
       {
         "matcher": "Edit|Write",
@@ -89,6 +79,15 @@
           {
             "type": "command",
             "command": "python3 ~/.claude/hooks/check_comment_density.py"
+          }
+        ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash '/Users/garvin/.tmux/plugins/tmux-agent-status/adapters/hook.sh' claude PostToolUse  # tmux-agent-status",
+            "timeout": 5
           }
         ]
       }
@@ -100,6 +99,50 @@
           {
             "type": "command",
             "command": "python3 ~/.claude/hooks/block_postgres_start.py"
+          }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash '/Users/garvin/.tmux/plugins/tmux-agent-status/adapters/hook.sh' claude UserPromptSubmit  # tmux-agent-status",
+            "timeout": 5
+          }
+        ]
+      }
+    ],
+    "Notification": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash '/Users/garvin/.tmux/plugins/tmux-agent-status/adapters/hook.sh' claude Notification  # tmux-agent-status",
+            "timeout": 5
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash '/Users/garvin/.tmux/plugins/tmux-agent-status/adapters/hook.sh' claude Stop  # tmux-agent-status",
+            "timeout": 5
+          }
+        ]
+      }
+    ],
+    "SessionEnd": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash '/Users/garvin/.tmux/plugins/tmux-agent-status/adapters/hook.sh' claude SessionEnd  # tmux-agent-status",
+            "timeout": 5
           }
         ]
       }
