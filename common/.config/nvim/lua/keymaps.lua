@@ -45,6 +45,13 @@ keymap('n', '<leader>O', function()
   vim.system { 'open', '-a', 'Google Chrome', vim.fn.expand '%:p' }
 end, { desc = '[O]pen file in Chrome' })
 
+-- Render current file with glow in a floating terminal
+keymap('n', '<leader>mg', function()
+  Snacks.terminal({ 'glow', '-s', 'dark', '-p', vim.fn.expand '%:p' }, {
+    win = { style = 'float', width = 0.9, height = 0.9, border = 'rounded' },
+  })
+end, { desc = '[M]arkdown [G]low in float' })
+
 -- Copy current buffer path to the system clipboard
 keymap('n', '<leader>yp', function()
   local path = vim.fn.expand '%:p'
