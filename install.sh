@@ -7,6 +7,7 @@ main() {
 	install_dependent_tools
 	download_delta_themes
 	run_stow_package common
+	link_glow_config
 	install_tpm
 	install_starship
 	download_tokyonight_themes
@@ -56,6 +57,21 @@ run_stow_package() {
 	else
 		echo "Running Stow package: $1"
 		stow --no-folding -Sv -t $HOME $1
+	fi
+}
+
+link_glow_config() {
+	# glow reads ~/Library/Preferences/glow on macOS rather than ~/.config/glow
+	[[ "$(uname)" == 'Darwin' ]] || return 0
+	local target="$HOME/Library/Preferences/glow"
+	if [[ -L $target ]]; then
+		echo "Glow config link exists, skipped"
+	elif [[ -e $target ]]; then
+		echo "WARNING: $target exists and is not a symlink, skipped linking glow config"
+	else
+		mkdir -p "$HOME/Library/Preferences"
+		ln -s "$HOME/.config/glow" "$target"
+		echo "Linked glow config"
 	fi
 }
 
