@@ -1,6 +1,9 @@
 {
   "$schema": "https://json.schemastore.org/claude-code-settings.json",
   "cleanupPeriodDays": 120,
+  "env": {
+    "CLAUDE_CODE_THRIFTY_SONIC": "0"
+  },
   "permissions": {
     "allow": [
       "Skill(keelvar-core:*)",
@@ -105,9 +108,6 @@
   "statusLine": {
     "type": "command",
     "command": "sh ~/.claude/statusline-command.sh"
-  },
-  "env": {
-    "CLAUDE_CODE_THRIFTY_SONIC": "0"
   },
   "enabledPlugins": {
     "rust-analyzer-lsp@claude-plugins-official": false,
